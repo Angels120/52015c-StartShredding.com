@@ -1,0 +1,233 @@
+.btn.focus, .btn:focus, .btn:hover {
+    color: unset!important;
+}
+.card {
+    border: unset!important;
+}
+.popover{
+    z-index: 10000;
+    font-size: 12px;
+    top: 0px;
+    margin-left: 2px;
+}
+#filter {
+    text-align: center;
+}
+
+#sns_custommenu ul.mainnav li.level0 > a > span.title {
+    font-size: 13px;
+    font-weight: 700;
+    font-family: Poppins;
+    position: relative;
+    text-transform: uppercase;
+    -webkit-transition: all .2s ease-out 0s;
+    transition: all .2s ease-out 0s
+}
+
+#tableArea {
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(219, 219, 219, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(219, 219, 219, 1);
+    box-shadow: 0px 0px 5px 0px rgba(219, 219, 219, 1);
+    padding: 0px 5px;
+    margin-top: 20px;
+}
+
+#productTable,
+.bootstrap-select {
+    font-family: 'Raleway', sans-serif;
+    width: 100% !important;
+}
+
+.btn,
+input {
+    border-radius: 0px !important;
+}
+
+#productTable {
+    position: -webkit-sticky;
+    /* Safari */
+    position: sticky;
+    top: 0;
+}
+
+
+#productTable .number {
+    /* margin-left: 7px; */
+    /* margin-right: 3px; */
+    padding: 0;
+    margin: 0px;
+    font-size: 14px;
+    border-style: none;
+    background-color: transparent;
+    width: 16px;
+}
+
+#productTable .icons i {
+    top: 0;
+    color: #652C91;
+}
+
+#productTable .icons i:first-child {
+    padding-right: 7px;
+}
+
+#productTable .icons i:last-child {
+    padding-left: auto;
+}
+
+.cart-icon {
+    top: 0;
+    font-size: 16px;
+}
+
+.home-wrapper .inner-block {
+    /* width: 40%; */
+    margin: 0 auto;
+}
+
+.home-wrapper .inner-block table thead {
+    font-size: 18px;
+}
+
+.home-wrapper .inner-block table tbody {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.home-wrapper .inner-block table tbody .icons i {
+    font-size: 15px;
+}
+
+label#searchProduct-error.error {
+    color: #ff0000;
+    font-size: 13px;
+    padding-top: 5px;
+    text-transform: uppercase;
+}
+
+#totalTable {
+
+    margin-left: auto;
+    padding: 0;
+}
+
+#totalTable td {
+    border-top: 0;
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 0;
+    text-transform: uppercase;
+}
+
+h4.sec-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.login-btn {
+    background-color: #0059B2;
+    color: #fff;
+    font-weight: 600;
+}
+
+
+@media screen and (min-width: 1650px) {
+    .home-wrapper .inner-block {
+        width: 30%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .home-wrapper .inner-block {
+        width: 30%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .home-wrapper .inner-block {
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .home-wrapper .container.inner-block {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .home-wrapper .inner-block table thead {
+        font-size: 14px;
+    }
+
+    .home-wrapper .inner-block table tbody {
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .home-wrapper .inner-block table tbody .icons i {
+        font-size: 13px;
+    }
+
+    .home-wrapper .inner-block table tbody .add-cart i {
+        font-size: 15px;
+    }
+
+    #productTable .number {
+        /* margin-left: 8px; */
+        /* margin-right: 2px; */
+        /* width: 10px; */
+    }
+
+    /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+    #map {
+        height: 100%;
+    }
+
+
+}
+
+#emptyCart {
+    padding: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#emptyCart i {
+    font-size: 70px;
+}
+
+@media screen and (min-width: 1650px) {
+    .home-wrapper .inner-block {
+        width: 60% !important;
+        margin: 0 auto;
+    }
+}
+
+#productTable th {
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.53) !important;
+    text-transform: uppercase;
+}
+
+.apply-btn {
+    background-color: #ffbd00;
+    color: #530033;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 40px;
+}
+.field-icon {
+    float: right;
+    position: relative;
+    z-index: 2;
+    top: -24px;
+    left: -7px;
+}

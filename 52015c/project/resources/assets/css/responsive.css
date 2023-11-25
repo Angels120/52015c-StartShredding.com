@@ -1,0 +1,325 @@
+/* Medium Layout: 1280px. */
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+
+.section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev,
+.section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-next {
+    margin-top: -24px;}
+.single-footer-area {margin-bottom: 30px;}
+.section-padding.footer-area-wrapper {padding-bottom: 70px;}
+.product-title {
+    font-size: 15px;
+    height: 40px;
+}
+
+/*  Add to cart table doc area */
+.table-product-review span {left: 0;}
+.table-product-review .fa-star {
+    display: block;
+    margin: 12px 0;
+    padding-bottom: 20px;
+}
+.table-product-color {font-size: 12px;}
+.quantity-area {padding: 8px 30px;}
+.quantity-area .up-sign, .quantity-area .down-sign {left: 60px;}
+.section-padding.product-shoppingCart-wrapper .table > tbody > tr > td {padding: 30px 10px;}
+
+/*  Product filter area */
+.product-meta-area a.addTo-cart {padding: 10px 5px;}
+.product-meta-area a.wish-list {padding: 10px 10px;}
+.product-carousel-text {height: 190px;}
+
+/* Customer review carousel area */
+.customer-review-carousel-image {height: 540px;}
+.logo-carousel {padding-bottom: 20px;}
+.section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev, 
+.section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-next {
+    margin-top: -15px;
+}
+
+/*  Starting of Account Dashboard area  */
+.single-account-info-div .col-lg-6 {margin-bottom: 30px;}
+    /*  Ending of Account Dashboard area  */
+
+    /*  Starting of product subscribe form area */
+    .product-subscribe-form-content {
+        padding: 20px 20px 45px 20px;
+        margin: 15% auto;
+    }
+    /*  Ending of product subscribe form area */
+
+    
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) { 
+.tab-list {margin-bottom: 25px;}
+.product-review-details-description {padding: 30px 0px;}
+
+/*  Add to cart table doc area */
+.quantity-area .up-sign, .quantity-area .down-sign {left: 60px;}
+.section-padding.product-shoppingCart-wrapper .table > tbody > tr > td {
+    padding: 30px 10px;
+    font-size: 14px;
+}   
+.table-product-review span {left: 0;}
+.table-product-review .fa-star {
+    display: block;
+    margin: 12px 0;
+    padding-bottom: 20px;
+}
+
+
+.footer-email-subs {margin-top: 30px;}
+.padding-top-100 {padding-top: 140px;}
+
+.single-footer-area {margin-bottom: 30px;}
+.section-padding.footer-area-wrapper {padding-bottom: 70px;}
+
+.single-product-imageBlog {padding-bottom: 30px;}
+.single-product-imageBlog.imageBlog-last {padding-bottom: 0;}
+
+/*  Product filter area */
+.product-meta-area a.addTo-cart {padding: 12px 8px;}
+.product-meta-area a.wish-list {padding: 12px 12px;}
+.product-carousel-text {height: 180px;}
+.product-filter-rightDiv {margin-top: 50px;}
+
+/*  Product details page area */
+.product-projects-FullDiv-area .product-size span {line-height: 38px;}
+.section-padding.product-details-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev, 
+.section-padding.product-details-wrapper .owl-carousel .owl-controls .owl-nav .owl-next {
+    margin-top: -30px;}
+.product-projects-FullDiv-area .product-header {font-size: 25px;}
+.product-title {
+    font-size: 15px;
+    height: 25px;
+}
+
+/*  Login area */
+.newAccount-area {margin-top: 50px;}
+
+/* Customer review carousel area */
+.customer-review-carousel-image {height: 560px;}
+
+/* Homepage Product-imageBlog area */
+.product-imgBlog-fullDiv .col-md-4 {padding-bottom: 30px;}
+
+/* Homepage logo carousel area */
+.logo-carousel {padding-bottom: 30px;}
+
+/* Product shipping form area */
+.shipping-details-area {margin-top: 40px;}
+
+/*  Starting of Account Dashboard area  */
+.single-account-info-div .col-lg-6 {margin-bottom: 30px;}
+.dashboard-mainmenu li a {padding: 10px 15px;}
+
+
+    /*  Starting of product subscribe form area */
+    .product-subscribe-icon {
+        font-size: 40px;
+        margin-bottom: 0px;
+    }
+    .product-subscribe-form-content {
+        padding: 10px 20px 30px 20px;
+        margin: 10% auto;
+    }
+    .product-subscribe-form-content p {
+        margin-top: 0;
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+    /*  Ending of product subscribe form area */
+
+
+
+    
+}
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+
+    .footer-social-links{
+        text-align: center;
+    }
+    .footer-copy{
+        text-align: center;
+    }
+.section-title h2 {
+    padding-left: 0px;
+    font-size: 18px;
+}
+.product-meta-area a.addTo-cart {padding: 12px 13px;}
+.section-padding.product-details-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev, .section-padding.product-details-wrapper .owl-carousel .owl-controls .owl-nav .owl-next {
+    top: 75%;
+}
+
+
+
+.tab-list {margin-bottom: 25px;}
+.product-review-details-img {padding-top: 20px;}
+.product-review-details-description {padding: 30px 0;}
+.product-review-details-description h3 {font-size: 18px;}
+a.addToCart-btn {margin-left: 0; margin-top: 20px;}
+.product-availability {margin-left: 0;}
+.breadcroumb-section h1 {font-size: 20px;}
+
+
+.product-carousel-list .owl-nav div, 
+.blog-area-slider .owl-nav div,
+.logo-carousel .owl-nav div
+ {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    margin-left: 10px;
+    transition: .3s;
+}
+.logo-carousel {padding-bottom: 30px;}
+.product-carousel-list .owl-nav div:hover,
+.blog-area-slider .owl-nav div:hover
+.logo-carousel .owl-nav div:hover
+   {background-color: #000; color: #fff;}
+.section-padding.product-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev,
+.section-padding.blog-area-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev,
+.section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev 
+ {left: 10px;}
+.section-padding.product-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-next,
+.section-padding.blog-area-wrapper .owl-carousel .owl-controls .owl-nav .owl-next,
+.section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-next 
+ {right: 10px;}  
+ .section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-prev,
+.section-padding.logo-carousel-wrapper .owl-carousel .owl-controls .owl-nav .owl-next {
+    top: 45%;
+} 
+.product-faq .panel-heading a {font-size: 16px;}
+
+/*  Add to cart table doc area */
+.table-product-review span {right: -16px;}
+.quantity-area {padding: 8px 8px;}
+.quantity-area .up-sign, .quantity-area .down-sign {left: 32px;}
+
+.contact-info i {left: -15px;}
+.contact-info {padding-left: 20px;}
+.contact-info-div {margin-top: 50px;}
+.padding-top-100 {padding-top: 40px;}
+
+.single-footer-area {margin-bottom: 30px;}
+.section-padding.footer-area-wrapper {padding-bottom: 70px;}
+.footer-social-links li a {margin-right: 8px;}
+
+.home-wrapper {overflow-x: hidden;}
+
+/*  Login area */
+.newAccount-area {margin-top: 50px;}
+.signIn-area .form-group .text-right {text-align: left;}
+
+/* Customer review carousel area */
+.customer-review-carousel-image {height: 650px;}
+.testimonial-section .owl-nav {
+    left: 0;
+    bottom: -65px;
+}
+.testimonial-author h4 strong {font-size: 12px;}
+.testimonial-author h4 {
+    font-size: 13px;
+    padding-top: 16px;
+    padding-left: 10px;
+}
+.testimonial-text p {padding: 10px;}
+
+/* Homepage Product-imageBlog area */
+.single-product-imageBlog {padding-bottom: 30px;}
+.product-imgBlog-fullDiv .col-md-4 {padding-bottom: 30px;}
+
+/*  Product filter area */
+.product-filter-rightDiv {margin-top: 50px;}
+.product-title {
+    font-size: 16px;
+    height: 30px;
+}
+.product-carousel-text {height: 180px;}
+.single-footer-area:last-child {
+    margin-bottom: 0;
+}
+
+/*  Product details page area */
+.product-projects-FullDiv-area .product-header {
+    font-size: 20px;
+    padding-top: 50px;
+}
+.product-projects-FullDiv-area {margin-top: 50px;}
+.product-projects-FullDiv-area .product-size span {
+    width: 35px;
+    height: 35px;
+    line-height: 34px;
+    margin-right: 0;
+}
+.section-padding.product-description-wrapper .tab-pane h1 {font-size: 20px;}
+
+/* Product shipping form area */
+.shipping-details-area {margin-top: 40px;}
+.shipping-title {margin-top: 30px;}
+
+/* Blog Details area */
+.blog-post-fullDiv {padding: 20px 10px;}
+.post-sidebar-area li a {font-size: 16px;}
+.social-sharing a {padding: 6px 5px 6px; margin-right: 5px;}
+
+/*  Starting of Account Dashboard area  */
+.single-account-info-div .col-lg-6 {margin-bottom: 30px;}
+#account-dashboard-tab h2, #my-orders-tab h1
+ {font-size: 20px;}
+.dashboard-breadcroumb-section .customer-info {top: 10px; left: 10px;}
+.customer-info h1 {font-size: 18px;}
+.account-info-div .edit-btn {
+    margin-top: 10px;
+    display: inline-block;
+}
+.account-info-div h3 {font-size: 20px;}
+#account-information-tab h1, #change-password-tab h1 {
+    font-size: 15px;
+}
+.order-item-quantity .text-right {
+    text-align: left;
+    margin-top: 12px;
+}
+#my-orders-tab .back-btn {margin-top: 15px;}
+.print-order.text-right {
+    text-align: left;
+    margin: 30px 0;
+}
+.shipping-add-area {margin-bottom: 20px;}
+.dashboard-mainmenu li {display: block;}
+.view-order-page h3 {font-size: 16px;}
+.table-responsive h5 {
+    font-size: 12px;
+    padding-bottom: 10px;
+}
+
+
+    /*  Starting of product subscribe form area */
+    .product-subscribe-section {height: 500px;}
+    .product-subscribe-form-content h1 {font-size: 20px;}
+    .product-subscribe-form-content {
+        padding: 20px 20px 45px 20px;
+        margin: 20% auto;
+    }
+    .product-subscribe-form-content input {display: block;}
+    .product-subscribe-form-content input[type="email"],
+    .product-subscribe-form-content .subscribe-btn {
+        width: 100%;
+    }
+    .product-subscribe-form-content .subscribe-btn {margin-top: 20px;}
+    /*  Ending of product subscribe form area */
+
+
+
+}
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) { 
+
+}

@@ -1,0 +1,1 @@
+<?php echo sprintf($template['content'], $order->order_number, $button); ?>
