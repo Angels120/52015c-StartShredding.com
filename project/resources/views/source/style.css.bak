@@ -1,0 +1,731 @@
+@font-face {
+    font-family: 'AvenirLTStd-Book';
+    src: url('../fonts/AvenirLTStd-Book.woff2') format('woff2'),
+         url('../fonts/AvenirLTStd-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AvenirLTStd-Heavy';
+    src: url('../fonts/AvenirLTStd-Heavy.woff2') format('woff2'),
+         url('../fonts/AvenirLTStd-Heavy.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AvenirLTStd-Light';
+    src: url('../fonts/AvenirLTStd-Light.woff2') format('woff2'),
+         url('../fonts/AvenirLTStd-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'AvenirLTStd-Medium';
+    src: url('../fonts/AvenirLTStd-Medium.woff2') format('woff2'),
+         url('../fonts/AvenirLTStd-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {font-family: "AvenirLTStd-Black";
+	src: url("../fonts/AvenirLTStd-Black.woff2") format("woff2"),
+    url("../fonts/AvenirLTStd-Black.woff") format("woff");
+	  font-weight: normal;
+   font-style: normal;
+}
+
+body,html{font-family: 'AvenirLTStd-Book'; background: #fff;font-size:17px;min-height: 100%;word-wrap: break-word;background-color:#fbfbfb;    color: #333;}
+body{overflow-x:hidden;width:100%;position:relative;    padding-bottom: 30px;}
+body.userloggedin{padding-bottom: 135px;}
+
+ul{list-style: none;padding:0px;margin:0px;}
+a,a:focus,a:hover{text-decoration:none;cursor:pointer;}
+.btn.focus, .btn:focus, .btn:hover{color:#fff;}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus,a:focus ,*:focus{ outline:none !important;text-decoration:none;}
+.fr{float:right;}
+p{margin:0px;}
+.nopadding{padding:0px;}
+img{max-width:100%;}
+.container {
+    max-width: 630px;
+}
+.loginscreens{}
+.buttonlink{
+	width:100%;
+	margin:auto auto 10px;	
+}
+.buttonlink a{
+	display:block;
+	padding:10px 0;
+	text-align:center;
+	border:1px solid #bbb;
+	    color: #444;
+	background-color:#eee;	    font-size: 16px;	
+}
+.buttonlink.fb a,.buttonlink.google a{
+	background-color:#2b78e4;	    color: #fff;
+	border:1px solid #2b78e4;
+	position:relative;
+}
+.buttonlink.link{margin-top:40px;}
+.buttonlink.fb a:before{
+	 content: "\f09a";
+	     display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+	position:absolute;
+	left:30px;
+	top:0;
+	bottom:0;
+	margin:auto;
+	height:15px;
+	font-size:20px;
+	line-height:15px;
+}
+.buttonlink.google a:before{
+	 content: "\f0d5";
+	     display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+	position:absolute;
+	left:30px;
+	top:0;
+	bottom:0;
+	margin:auto;
+	height:15px;
+	font-size:20px;
+	line-height:15px;
+}
+.loginscreens .logo{
+	width:120px;
+	height:120px;
+	background-image:url('../images/logo.png');
+	background-position:center;
+	background-size:contain;
+	background-repeat:no-repeat;
+	margin:auto;
+	margin-bottom:30px;
+	margin-top:30px;	
+}
+.bluelink{
+	border-bottom:1px solid #337ab7;
+}
+h1.title{
+	text-align: center;
+	font-size: 30px;
+	margin:10px 0 15px 0;	
+}
+.signupcenterwrap{
+    display: table;
+    position: absolute;
+    height: 100%;    left: 0;
+    top: 0;
+    width: 100%;
+}	
+.signupcenterwrap .signupcenter{
+	 width: 100%;
+    display: table-cell;
+    vertical-align: middle;
+       padding: 15px;
+	
+}
+.signupcenterwrap .signupcenter .inner{
+	position:relative;
+	background-color: #eee;
+    padding: 50px 15px 20px;
+}
+.signupcenterwrap .signupcenter .inner .logo{
+	background-image:url('../images/logo.png');
+	width:100px;
+	height:100px;
+	background-repeat:no-repeat;
+	position:absolute;
+	left:0;
+	right:0;
+	margin:auto;
+	top:-50px;
+	background-size:50px;
+	background-position:center;
+	border-radius:50%;
+	background-color: #ccc;
+}
+.loginform input{
+	border:1px solid #333;
+	width:100%;
+	margin-bottom:15px;
+	padding:8px 15px;	
+}
+.loginform input[type=submit]{
+	background-color:#a64d79;color:#fff;
+}
+.loginform{margin-top:40px;}
+header{ background-color:rgb(41, 41, 41);color:#fff;line-height:30px;padding:20px 0px;text-align:center;position:relative;font-family: 'AvenirLTStd-Medium';}
+header.userloggedin{
+	position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+	left:0;	
+}
+header .menu-wrap{position:relative;top:20px;border-top:1px solid #fff;display:none;}
+header .menu-wrap ul li a{
+	display:block;
+	padding:7px 0;
+	border-bottom:1px solid #fff;
+	color:#fff;
+}
+header h1{font-size: 17px;margin:0;}
+header .container{position:relative;padding:0 40px;}
+header .menu{
+	font-size:30px;	color:#fff;
+	position:absolute;
+	left:15px;
+	top:0;
+	bottom:0;
+	height:30px;
+	margin:auto;
+}
+header .setting{
+	font-size:30px;	color:#fff;
+	position:absolute;
+	right:15px;
+	top:0;
+	bottom:0;
+	height:30px;
+	margin:auto;
+}
+.dashuser{
+	background-color:#085394;color:#fff;padding:15px;position:relative;
+}
+.dashuser .container{
+	display:table;
+	width:100%;
+}
+.dashuser .user-info{display:table-cell;vertical-align:middle;}
+.dashuser .user-credit{text-align:right;display:table-cell;vertical-align:middle;}
+.dashuser .user-credit .price{
+	font-size:34px;
+	font-family: 'AvenirLTStd-Medium';
+}
+.dashuser .user-info .inner{
+	display:inline-block;
+	text-align:center;font-size:24px;	
+	font-family: 'AvenirLTStd-Medium';
+}
+.dashuser .user-info i{
+	color: #fefe00;
+	font-size:50px;
+}
+.scantopaytext{
+	color:#863e91;margin-top:15px;
+	margin-bottom:20px;    font-size: 20px;
+}
+.scantopaytext.heavy{    font-family: 'AvenirLTStd-Heavy';}
+#qrcode{float:right;}
+#myCarousel .carousel-indicators{
+	position: relative;	bottom: 0;
+}
+#myCarousel .carousel-indicators li{
+	background-color:#333;border:0;	border-radius:0;
+	bottom:0;
+	margin-top:20px;vertical-align: middle;
+}
+#myCarousel .carousel-indicators li.active{opacity:0.5;width:10px;height:10px;}
+.dealsforyou{
+	border-top:1px solid #333;
+	margin-top:30px;
+	padding-top:15px;
+}
+.dealsforyou .text{
+	color: #863e91;
+    margin-top: 15px;
+    margin-bottom: 10px;	
+}
+footer{
+	background-color:rgb(41, 41, 41);color:#fff;line-height:30px;padding:15px 0;position:relative;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index:999;
+}
+footer .container{display:table;width:100%;}
+footer .accountloy{
+	display:table-cell;
+	vertical-align:middle;
+	width:50%;	
+}
+footer .transhop{
+	display:table-cell;
+	vertical-align:middle;	
+	width:50%;	
+	text-align:right;
+}
+footer .inner a{color:#fff;}
+footer .inner i{font-size:18px;color:#fff;}
+footer .inner{display:inline-block;vertical-align:middle;text-align:center;padding-right:30px;font-size:14px;}
+footer .inner:last-child{padding-right:0;}
+footer .flyrocket{
+color: #444;
+    font-size: 30px;
+    background-color: #fff;
+    width: 60px;
+    height: 60px;
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: -23px;
+    border-radius: 50%;
+    border: 4px solid #085394;
+    /* outline: 1px solid #ccc; */
+    box-shadow: 0 0 3px #ddd;
+}
+footer .flyrocket i{
+	    line-height: 52px;	
+}
+.paycomplete{
+	border-top: 1px solid #333;
+	display:table;
+	width:100%;
+	padding:30px 30px 15px;
+}
+.paycomplete .comtitle{
+	font-size:18px;    color: #863e91;margin-bottom:15px;	
+}
+.paycomplete label {
+    color: #863e91;
+    font-weight: normal;
+}
+.paycomplete .sentuser {
+    display:table-cell;
+    vertical-align: top;
+    color: #073763;
+}
+.paycomplete .amount {
+    display:table-cell;
+    vertical-align: top;
+    margin-right: 30px;
+    color: #073763;
+	text-align:right;
+}
+.paycomplete .amount .price {
+    font-size: 32px;
+    font-family: 'AvenirLTStd-Medium';
+}
+.complete-buttons{
+    text-align:center;
+}
+.complete-buttons a{
+	display:inline-block;
+	color:#333;
+	text-align:center;
+	padding:0 15px;
+	vertical-align:middle;	
+}
+.complete-buttons a i{font-size:22px;}
+
+.payconfirmation{
+	border-top: 1px solid #333;
+	border-bottom: 1px solid #333;
+	margin-bottom:15px;
+	padding:30px;
+}
+.payconfirmation .amount{
+	display:inline-block;
+	vertical-align:top;
+	margin-right:30px;	color:#073763;
+}
+.payconfirmation .sentuser{
+	display:inline-block;
+	vertical-align:top;	color:#073763;
+}
+.payconfirmation label{
+	color: #863e91;
+	font-weight:normal;	
+}
+.payconfirmation .amount .price{
+	font-size:32px;    font-family: 'AvenirLTStd-Medium';
+	
+}
+.buttonlink.confirm a{
+	    background-color: #009E0F;
+    color: #fff;
+}
+table.list{width:100%;margin-top:20px;}
+table.list td{padding:10px 0;}
+table.list td.name{font-family: 'AvenirLTStd-medium';color: #863e91;}
+table.list tr{cursor:pointer;}
+table.list tr.detail{cursor:auto;}
+.list .detail table{display:none;width: 100%;}
+.list .detail>td{padding:0 15px;}
+.list .detail{border-bottom:1px solid #333;}
+table.list td.name:not(.nosub):after{
+	content: "\f0d7";
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+	margin-left:10px;
+}
+.list .price{color:#863e91;text-align:right;padding-right:25px;}
+.list .detail .price{padding-right:0px;    min-width: 120px;}
+.list .detail .price a{color:#333;}
+.list .detail .price i{
+	    font-size: 20px;
+    margin-left: 5px;	
+}
+.list .delete{
+	color:#fff;
+	border:1px solid #222;
+	display:inline-block;
+	background-color:#cc0000;
+	padding:7px 10px;
+	text-transform:uppercase;
+	font-size:14px;
+	margin-left:5px;	
+}
+table.list span{display:inline-block;}
+.financetip h2{font-family: 'AvenirLTStd-medium';font-size:18px;}
+.financetip  .title{font-size:18px;    margin-bottom: 5px;}
+
+.normtext{margin-bottom:20px;}
+.financetip .buttonlink {margin-top:20px;}
+.financetip .col-xs-6{padding:0 5px;}
+.financetip .row{margin-left:-5px;margin-right:-5px;}
+.financetip img{width:100%; }
+.accoutform .field{
+	border-bottom:1px solid #ccc;
+	padding:15px 0;	
+	float:left;
+	width:100%;
+}
+.accoutform .field .subfield{
+	padding:10px 0;	
+	float:left;
+	width:100%;
+}
+.accoutform .field label{
+    color: #863e91;font-family: 'AvenirLTStd-medium';
+	font-weight:normal;
+	width:33.33%;
+	float:left;
+	margin-top:4px;
+	margin-bottom:0;
+	padding-right:5px;
+}
+.accoutform .field label.width100{width:100%;}
+.accoutform .field label.tright{text-align:right;}
+.accoutform .field select,.accoutform .field input{
+	width:65.77%;
+	float:left;
+	padding:5px; border: 1px solid #bbb;
+}
+.accoutform input[type=submit]{
+	    background-color: #009E0F;
+    color: #fff;
+	padding:10px ;border: 1px solid #bbb;	
+	width:200px; font-size: 16px;
+	margin:15px 0 10px 0;
+}
+.accoutform .cancel{
+	display: block;width:200px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #bbb;
+    color: #444;
+    background-color: #eee;
+    font-size: 16px;
+}
+#filter{
+	text-align: center;
+    margin-top: 20px;
+}
+#filter select{
+	width: 150px;
+	padding: 7px 10px;	
+}
+.liststats{
+    color: #285763;	font-family: 'AvenirLTStd-medium';
+	text-align:center;
+}
+.statlist{width:100%;}
+.statlist th{font-family: 'AvenirLTStd-medium';padding:10px 7px;font-weight:normal;color:#000; border-bottom: 1px solid #bbb;position:relative;    padding-right: 16px;border-top:1px solid #bbb;}
+.statlist td{padding:10px 7px;border-bottom:1px solid #bbb;}
+.statlist tr td:first-child,.statlist tr th:first-child{border-left:1px solid #bbb;}
+.statlist tr td:last-child,.statlist tr th:last-child{border-right:1px solid #bbb;}
+
+.statlist tfoot tr td{border:0 !important;}
+
+.statlist tfoot td{
+	    color: #285763;    font-family: 'AvenirLTStd-medium';
+}
+.statlist tbody tr:nth-child(odd) td{
+	background-color:#eee;
+}
+.statlist th i{
+	position: absolute;
+    right: 7px;
+    top: 26%;	
+}
+.statlist th .fa-caret-down{
+	top:43%;
+}
+.addcategory{margin-top:50px;}
+.addcategory a{
+	background-color: #009E0F;
+    color: #fff;
+    padding: 10px 15px;
+    border: 1px solid #bbb;
+    width: 200px;
+    font-size: 16px;
+    margin: 15px 0 10px 0;
+    text-align: center;	
+}
+.accoutform{margin-top:20px;}
+#search_transaction label{
+	width:100%;
+	margin-top:20px;
+	font-weight:normal;	  font-family: 'AvenirLTStd-medium';
+}
+#search_transaction input{
+	width:70%;
+	border-radius: 25px;
+	-webkit-border-radius: 25px;
+	-moz-border-radius: 25px;
+	-o-border-radius: 25px;
+    border: 1px solid #bbb;
+    padding: 5px 15px;	
+}
+#search_transaction button{
+	border: 0;
+    background: none;
+	font-size: 22px;
+    line-height: 22px;
+}
+#search_transaction_advanced .row{
+	margin-left:-2px;
+	margin-right:-2px;
+	margin:10px 0;	
+}
+#search_transaction_advanced [class*=col-]{padding-left:2px;padding-right:2px;}
+#search_transaction_advanced #from,#search_transaction_advanced #to{
+	width: 100px;
+	margin-right:5px;	
+}
+#search_transaction_advanced  .title{
+	    width: 100%;
+    
+    font-weight: normal;
+    font-family: 'AvenirLTStd-medium';	
+}
+#search_transaction_advanced .field{
+	margin:15px 0;	
+}
+#search_transaction_advanced .field label{
+	font-weight:normal;
+	width:33.33%;	
+}
+#search_transaction_advanced input,#search_transaction_advanced select{
+	padding: 5px;
+	border: 1px solid #bbb;	
+	width: 64.77%;
+}
+#search_transaction_advanced input[type=submit] {
+    background-color: #009E0F;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid #bbb;
+    width: 200px;
+    font-size: 16px;
+    margin: 15px 0 10px 0;
+}
+.tarn_detailblock{margin-top:20px;}
+.tarn_detailblock .rightside{
+	text-align:right;	
+}
+.tarn_detailblock .rightside a{
+	color: #cc0000;
+	font-size:22px;
+	margin:0 5px;
+	display:inline-block;
+	vertical-align:middle;
+}
+.tarn_detailblock .rightside a .fa-share-alt{
+	color:#333;
+}
+.tarn_detailblock .rightside .amount{
+	font-size:32px;	font-family: "AvenirLTStd-Black";    white-space: nowrap;
+}
+.tarn_detailblock address{
+	font-family: "AvenirLTStd-medium";margin-bottom:15px;	
+}
+.tarn_detailblock{margin-left:-5px;margin-right:-5px;}
+.tarn_detailblock [class*=col-]{
+	padding-left:5px;
+	padding-right:5px;	
+}
+.trans_list{margin-top:30px;}
+.trans_list td{
+	border-top:1px solid #222;	
+}
+.trans_list .detail td{border:0;}
+.trans_list select{
+	 display:inline-block;    font-size: 12px;
+	vertical-align:middle;padding: 5px 10px;border: 1px solid #bbb;
+	margin:5px 0;
+}
+.trans_list tr td:first-child{width:135px;}
+.trans_list  a{
+	background-color: #009E0F;
+    color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #bbb;
+    font-size: 12px;
+    font-size: 14px;
+    display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+}
+.loyaltilinkblock{
+	margin-top:20px;
+	font-size:0;
+	margin-bottom:20px;	
+}
+
+.loyaltilinkblock .giftcardlink{
+	background-color:#ff9900;
+	border:1px solid #000;
+	color:#333;
+	text-align:center;
+	width:49%;
+	margin-right:1%;
+	padding:7px 5px;
+	display:inline-block;
+	vertical-align:middle;
+	font-size:14px;	
+}
+.loyaltilinkblock .loyaltylink{
+	background-color:#2b78e4;
+	border:1px solid #000;
+	color:#fff;
+	text-align:center;
+	width:49%;
+	margin-right:1%;
+	padding:7px 5px;
+	display:inline-block;
+	vertical-align:middle;	
+	font-size:14px;			
+}
+.loyaltilinkblock .marketbtn{
+	background-color:#2b78e4;
+	border:1px solid #000;
+	color:#fff;
+	text-align:center;
+	width:32.33%;
+	margin-right:1%;
+	padding:7px 5px;
+	display:inline-block;
+	vertical-align:middle;	
+	font-size:14px;			
+}
+.market_list{
+	font-size:45px;
+	text-align:center;
+	color:#333;	
+}
+.market_list i,.market_list svg{color:#333;	}
+.market_list span{
+	font-size:16px;
+	display:inline-block;
+	margin-top:10px;
+	line-height:16px;
+	border-bottom:1px solid #285763;
+	color: #285763;
+	clear:both;font-family: "AvenirLTStd-medium";
+}
+.market_list [class*=col-]{margin-bottom:30px;}
+.tarn_detailblock h2{
+	margin-bottom:0;
+	font-size:18px;font-family: 'AvenirLTStd-Heavy';	
+}
+.trans_list a.link{
+    background-color: transparent;
+    color: #fff;
+    padding: 0px;
+    border:0;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+	border-bottom:1px solid #285763;
+	color: #285763;font-family: "AvenirLTStd-medium";
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color:#333;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color:#333;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color:#333;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color:#333;
+}
+
+
+.martop40{margin-top:40px !important;}
+.margin0{margin:0 !important;}
+.marbot40{margin-bottom:40px !important;}
+.martop15{margin-top:15px !important;}
+
+@media screen and  (max-width: 400px) {
+	.buttonlink.fb a:before,.buttonlink.google a:before{left:15px;}
+	.buttonlink a{ font-size: 15px;}
+	h1.title{font-size:24px;}
+	footer .inner{padding-right:10px;}
+	.payconfirmation{ padding:30px 15px;}
+	body{font-size:16px;}
+	.scantopaytext{font-size:18px;}
+	.payconfirmation .amount{margin-right:20px;}
+	.paycomplete .amount { margin-right: 20px;}
+	.paycomplete .comtitle{font-size:16px;}
+	.paycomplete{padding:30px 10px 15px;font-size:14px;}
+	footer .flyrocket{width:55px;height:55px;    top: -18px;}
+	footer .flyrocket i{font-size:30px;line-height:47px;}
+	.list .detail>td{padding-left:15px;}
+	.financetip .col-xs-6{width:100%;}
+	.financetip img{margin-bottom:15px;}
+	#filter select{
+		width: 140px;
+		padding: 7px 10px;	
+	}
+	.tarn_detailblock .rightside a{font-size:20px;    margin: 0 3px;}
+	.tarn_detailblock .rightside .amount{font-size:28px;
+    white-space: nowrap;}
+	.loyaltilinkblock .giftcardlink,.loyaltilinkblock .loyaltylink{font-size:12px;}
+}
+@media screen and  (max-width: 320px) {
+	body,table{    font-size: 14px;}
+	.tarn_detailblock .rightside .amount{font-size:24px;}
+	#search_transaction_advanced #from,#search_transaction_advanced #to{width:90px;margin-right:1px;}
+	.loyaltilinkblock .giftcardlink{width:55%;}
+	.loyaltilinkblock .loyaltylink{
+		width:43%;	
+	}
+}

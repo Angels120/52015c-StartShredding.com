@@ -1,0 +1,554 @@
+:root{
+	--black:#000;
+	--red:#ff3548;
+}
+.line-entry .header-top-entry {
+	margin-left: 40px;
+	font-size: 16px;
+}
+.line-entry .header-top-entry a {
+	color: var(--black);
+}
+.line-entry .header-top-entry a:hover{
+	color: var(--red);
+}
+.header-wrapper.style-10 header:not(.fixed-header) .nav-overflow {
+	background: rgba(0,0,0,0.85);
+}
+.medium-right{
+	float: right;
+}
+.bg-yellow {
+	background-color: #f2fc5a;
+	padding: 20px 20px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+.order-title h4 {
+	font-size: 16px;
+	font-weight: 600;
+	margin: 20px 0 10px;
+	color: #000;
+	text-align: center;
+}
+.sales p {
+	font-size: 14px;
+	color: #000;
+	margin: 0 0 4px 0;
+}
+.order-title h4 {
+	font-size: 16px;
+	font-weight: 600;
+	margin: 20px 0 10px;
+	color: #000;
+	text-align: center;
+}
+.order-list {
+	width: 96%;
+	margin: 20px auto 0;
+}
+.order-list li {
+	position: relative;
+	padding-left: 0px;
+	margin-bottom: 5px;
+}
+.order-list a {
+	font-size: 14px;
+	color: var(--black);
+	text-decoration: underline;
+}
+.order-list a:hover{
+	color: var(--red);
+}
+#logo img {
+	height: 30px;
+	margin-top: 16px;
+	width: 170px;
+}
+.notify_box {
+	padding: 10px 15px;  
+} 
+.notify_menu li:not(:last-child) .notify_box {
+	border-bottom: 1px solid #ccc;           
+}
+.dropdown-menu {
+	position: fixed;
+	border-radius: 0;
+	top: 72px;
+	border: none;
+	left: auto;
+}
+.panel-heading {
+	background-color: #000 !important;
+}
+.panel-heading .top-title h3 {
+	margin: 0;
+	font-size: 17px;
+	color: #fff;
+	font-weight: 500;
+	padding: 5px;
+}
+.panel-heading {
+	position: relative;
+}
+.panel-heading .title-select {
+	width: auto;
+	position: absolute;
+	right: 15px;
+	top: 11px;
+	padding: 2px 5px;
+	height: auto;
+	background: transparent;
+	color: #fff;
+}
+.panel-heading .title-select:focus{
+	box-shadow:none;
+	border-color: #ccc;
+}
+.table-foot-btn li {
+	display: inline-block;
+	margin: 0 2px 0 0;
+	padding: 0 8px 0 0;
+	line-height: 12px;
+	vertical-align: middle;
+}
+.table-foot-btn li:not(:last-child){
+	border-right: 1px solid #ccc;
+}
+.table-foot-btn a {
+	font-size: 13px;
+	display: inline-block;
+	color: #000;
+	font-weight: 400;
+}
+.table-responsive {
+	padding: 0;
+}
+table.dataTable thead .sorting::after, table.dataTable thead .sorting_asc::after, table.dataTable thead .sorting_desc::after, table.dataTable thead .sorting_asc_disabled::after, table.dataTable thead .sorting_desc_disabled::after {
+	display: none;
+}
+.table-foot-btn {
+	margin-top: 6px;
+}
+.hide{
+	display: none;
+}
+.bg-white {
+	background-color: #fff;
+	padding: 20px 20px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-top: 10px;
+}
+.bg-white.p-0 {
+	padding: 0;
+}
+ul.custom-tabs {
+	display: inline-block;
+	width: 100%;
+	margin: 0 0 -5px 0px;
+}
+ul.custom-tabs li {
+	display: inline-block;
+	margin: 0 0px 0 0;
+	width: 33.333%;
+	float: left;
+	text-align: center;
+	border-right: 1px solid #ddd;
+}
+ul.custom-tabs li a {
+	padding: 11px 0;
+	display: block;
+	color: #000;
+	font-weight: 600;
+	font-size: 14px;
+	letter-spacing: 1px;
+}
+.tab-content > .tab-pane {
+	display: none;
+}
+.page-title {
+	border: 1px solid #ddd;
+	background-color: #fff;
+	margin-bottom: 15px;
+	border-radius: 4px;
+	overflow: hidden;
+	padding: 15px 20px;
+}
+.custom .width_100 {
+	width: 100%;
+	margin: 0 0 15px 0;
+}
+.form-inline select.form-control, .form-inline .form-control {
+	font-weight: 300;
+}
+.form-inline select.form-control, .form-inline .form-control {
+	font-weight: 300;
+}
+.form-inline select.form-control {
+	min-width: 110px;
+}
+.custom .form-inline select.form-control {
+	width: 20%;
+	float: left;
+}
+.tab-content > .active {
+	display: block;
+}
+.custom-dateicker {
+	float: right;
+	width: 35%;
+	margin: -5px 12px 0 0px;
+}
+.page-title h2 {
+	font-size: 20px;
+	font-weight: 600;
+	margin: 0;
+	display: inline-block;
+}
+.form-inline .custom-dateicker > label {
+	margin: 15px 10px 0 0;
+}
+.form-inline .input-group {
+	display: inline-table;
+	vertical-align: middle;
+}
+.bg-yellow {
+	background-color: #f2fc5a;
+	padding: 20px 20px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	margin-top: 10px;
+}
+.custom-dateicker > label {
+	float: left;
+	margin: 4px 10px 0 0;
+}
+.form-inline .form-control {
+	margin: 0 10px 0 0;
+}
+.form-control {
+	border-radius: 0;
+	box-shadow: none;
+	height: 40px;
+	padding: 5px 8px;
+}
+.thank-you-box {
+	display: none;
+}
+ul.custom-tabs li a:hover, ul.custom-tabs li.active a {
+	background-color: #000;
+	color: #fff;
+}
+.account-blnce {
+	margin-bottom: 15px;
+}
+.form-inline .input-group {
+	display: table;
+}
+.form-inline .custom-dateicker {
+	display: inline-block;
+	float: none;
+	width: 20%;
+}
+.form-inline .custom-dateicker {
+	vertical-align: bottom;
+}
+.custom .form-inline .custom-dateicker {
+	float: left;
+	width: 27.7%;
+}
+.table-btn.text-right {
+	margin-top: 14px;
+}
+.left-select-all {
+	float: left;
+	margin: 15px 0 0;
+}
+.checkbox-new {
+	position: relative;
+	display: inline-block;
+}
+.left-select-all .checkbox-new {
+	margin: 0 30px 0 0;
+}
+.checkbox-new input[type="radio"], .checkbox-new input[type="checkbox"] {
+	height: 17px;
+	left: 0;
+	margin: 0;
+	opacity: 0;
+	position: absolute;
+	top: 2px;
+	width: 17px;
+	z-index: 1;
+}
+.checkbox-new label {
+	display: inline-block;
+	font-weight: 600;
+	padding: 3px 0 0 25px;
+	font-size: 13px;
+}
+.checkbox-new label::after {
+	background: transparent;
+	border: 1px solid #dedede;
+	content: "";
+	height: 17px;
+	left: 0;
+	position: absolute;
+	top: 2px;
+	width: 17px;
+}
+.table-foot-btn li {
+	display: inline-block;
+	margin: 0 2px 0 0;
+	border-right: 1px solid #ccc;
+	padding: 0 8px 0 0;
+	line-height: 12px;
+	vertical-align: middle;
+}
+.excel-btn li {
+	border: none;
+	margin: 0 0 0 20px;
+}
+.table-foot-btn a {
+	font-size: 13px;
+	display: inline-block;
+	color: #000;
+	font-weight: 600;
+}
+.excel-btn a {
+	text-align: center;
+}
+.excel-btn a i {
+	font-size: 24px;
+	margin: 0 0 11px;
+}
+.table-foot-btn span {
+	display: block;
+	font-weight: 600;
+}
+.page-total {
+	display: inline-block;
+	margin: 0 0 20px 0;
+}
+.page-total h4 {
+	display: inline-block;
+	min-width: 150px;
+	font-size: 14px;
+	font-weight: 600;
+	margin: 0 0 0;
+}
+.page-total span {
+	display: inline-block;
+	min-width: 109px;
+	text-align: left;
+	margin: 0 0px 5px 10px;
+}
+ul.table-foot-btn.excel-btn.custom {
+	display: inline-block;
+	vertical-align: top;
+	margin: 0 20px 0 0px;
+}
+label {
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 5px;
+	font-weight: 700;
+}
+.form-group {
+	display: inline-block;
+	width: 100%;
+}
+.custom .width_100 {
+	width: 100%;
+	margin: 0 0 15px 0;
+}
+.form-group:last-child {
+	margin-bottom: 0;
+}
+.input-group.date .input-group-addon {
+	border-radius: 0;
+}
+.custom .form-inline .custom-dateicker {
+	float: left;
+	width: 28%;
+}
+.custom-dateicker:last-child {
+	margin-right: 0;
+}
+.custom-calendar {
+	margin-top: 5px;
+}
+.sale-summary .sales {
+	margin: 20px auto;
+	width: 96%;
+}
+.net-profit {
+	background-color: #000;
+	text-align: center;
+	padding: 10px 10px;
+	margin: 15px 0 0;
+}
+.net-profit label {
+	color: #fff;
+	font-size: 15px;
+	font-weight: 400;
+	margin: 0;
+}
+.checkbox-new {
+    position: relative;
+    display: inline-block;
+}
+.checkbox-new input[type="checkbox"]:checked ~ label::after {
+    background-image: url(../images/check-icon.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 12px auto;
+    border-color: #000;
+}
+.stick-able.sticky{
+	position: sticky;
+    top: 75px;
+}
+/* Modal styles */
+.modal .modal-dialog {
+	max-width: 400px;
+}
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+	padding: 20px 30px;
+}
+.modal .modal-content {
+	border-radius: 3px;
+}
+.modal .modal-footer {
+	background: #ecf0f1;
+	border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+    display: inline-block;
+}
+.modal .form-control {
+	border-radius: 2px;
+	box-shadow: none;
+	border-color: #dddddd;
+}
+.modal textarea.form-control {
+	resize: vertical;
+}
+.modal .btn {
+	border-radius: 2px;
+	min-width: 100px;
+}
+.modal form label {
+	font-weight: normal;
+}
+.form-inline .width_40 {
+	width: 35.4%;
+}
+.table-foot-btn button {
+	padding: 0;
+	background: transparent;
+	color: #000;
+	border: none;
+	font-weight: 600;
+	font-size: 13px;
+}
+.table-foot-btn button:hover {
+	padding: 0;
+	border: none;
+}
+.dt-buttons {
+	display: none;
+}
+.dataTables_length {
+	float: left;
+}
+.bigBtnhref i {
+	font-size: 24px;
+	margin: 0 0 11px;
+}
+#addBankAccount,#addUserAccountTrigger {
+	float: right;
+}
+#ban-accounts-table_wrapper,#loginuser-accounts-table_wrapper {
+	margin-top: 25px;
+}
+.ffourNavs li {
+	width: 25% !important;
+}
+.table-actions a {
+	color: #333;
+	margin: 0;
+	padding: 0 6px;
+}
+.table-actions a:not(:last-child) {
+	border-right: 1px solid #333;
+}
+#bankAccountBox,#addUserAccountBox {
+	overflow: hidden;
+	margin-top: 25px;
+	margin-bottom: 15px;
+}
+.form-group {
+	margin: 10px 0;
+} 
+.sales a, .sales span{
+	font-weight:bold;
+	color:#337ab7;
+}
+.header-product .logo-wrapper {
+	width: 400px;
+}
+.form-control.title-select {
+	color: #000;
+}
+.form-control.title-select option{
+	color: #333 !important;
+}
+.type-1.fixed-header nav {
+	height: 50px;
+}
+.type-1.fixed-header nav ul li a {
+	color: #fff;
+	line-height: 50px;
+}
+nav ul li a:hover{             
+	color: #f2fc5a !important;
+	text-decoration: none !important;
+}
+.type-1.fixed-header .logo-wrapper {
+	position: fixed;
+	top: -16px;
+	z-index: 9999999;
+	width: 500px !important;
+	display: block;
+	max-width: 100%;
+}
+.type-1.fixed-header .logo-wrapper h3 {
+	color: #fff;
+	margin-top: 4px;
+	font-size: 15px !important;
+}
+.dataTables_length select {
+	width: 75px !important;
+	min-width: auto !important;
+}
+.datepicker-switch {
+	text-align: center;
+}
+
+.datepicker.datepicker-dropdown.dropdown-menu{
+	position: absolute !important;
+}
+.type-1.fixed-header {
+	z-index: 99999;
+}
+#conta1 .custom-calendar, #conta2 .custom-calendar {
+	margin-top: 3px !important;
+}
+#conta1 .custom-calendar input,#conta2 .custom-calendar input {
+	height: 30px !important;
+}
+#conta1 .custom-calendar span,#conta2 .custom-calendar span {
+	border-radius: 0px 3px 3px 0px !important;
+}
