@@ -1,0 +1,1 @@
+{!! sprintf($template['content'], $name) !!}

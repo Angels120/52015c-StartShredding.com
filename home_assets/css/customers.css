@@ -1,0 +1,24 @@
+.blockUI {
+    z-index: 1011;
+    position: absolute !important;
+}
+/*.logo {*/
+/*    margin-top: 0px !important;*/
+/*}*/
+.btn-success {
+    color: unset;
+    background-color: unset !important;
+    border-color: unset !important;
+}
+
+.btn-success:hover{
+    border: 1px solid #2626e3!important;
+    color: #fff!important;
+    background: #052977!important;
+}
+.form-control[disabled]
+{
+    color: unset;
+    background-color: unset !important;
+    border-color: unset !important;
+}
