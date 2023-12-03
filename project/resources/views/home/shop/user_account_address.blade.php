@@ -589,7 +589,7 @@
                 @section('scripts')
 
                     <script src="{{ URL::asset('assets/js/jquery.maskedinput.js')}}"></script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRu_qlT0HNjPcs45NXXiOSMd3btAUduSc&libraries=places&callback=initMap"
+                    <script src="https://maps.googleapis.com/maps/api/js?key=<?=config('GOOGLE_KEY')?>&libraries=places&callback=initMap"
                             async defer></script>
                     <script>
                         jQuery(function ($) {
