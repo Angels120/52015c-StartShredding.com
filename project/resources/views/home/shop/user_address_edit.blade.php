@@ -312,7 +312,7 @@
     <!-- BEGIN PAGE LEVEL JS -->
     <script src="{{ URL::asset('new_assets/assets/js/demo.js')}}" type="text/javascript"></script>
     <script src="{{ URL::asset('assets/js/jquery.maskedinput.js')}}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRu_qlT0HNjPcs45NXXiOSMd3btAUduSc&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?=config('GOOGLE_KEY')?>&libraries=places&callback=initMap" async defer></script>
     <script>
         jQuery(function($){
             $("#yourphone").mask("(999) 999 - 9999");
