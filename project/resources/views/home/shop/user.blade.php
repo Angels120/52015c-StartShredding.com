@@ -193,13 +193,13 @@
         </div>
     </div>
     <!-- Ending of login area -->
-</div>
+</div> 
 @stop
 
 @section('footer')
 
 <script
-    src="https://maps.googleapis.com/maps/api/js?key=<?=config('GOOGLE_KEY')?>&libraries=places&callback=initMap"
+    src="https://maps.googleapis.com/maps/api/js?key=<?=env('GOOGLE_KEY')?>&libraries=places&callback=initMap"
     async defer></script>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --}}
 
