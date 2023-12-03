@@ -193,7 +193,7 @@
         </div>
     </div>
     <!-- Ending of login area -->
-</div>
+</div> 
 @stop
 
 @section('footer')
