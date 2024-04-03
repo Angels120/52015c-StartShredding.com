@@ -333,7 +333,7 @@
     <script>
         $("#download-btn").click(function (e) {
             e.preventDefault();  //stop the browser from following
-            window.location.href = '/home/shop_order_pdf/download/<?php echo $order->id;?>';
+            window.location.href = '/shop_order_pdf/download/<?php echo $order->id;?>';
         });
     </script>
     <!-- END PAGE LEVEL JS -->

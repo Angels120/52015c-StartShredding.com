@@ -88,9 +88,9 @@
                             <ul class="nav nav-tabs">
                                 <li><a href="{{url('/vendor/customer/'.$client->id)}}">Overview</a></li>
                                 <li><a href="{{url('/vendor/customer/'.$client->id.'/templates')}}">Templates</a></li>
-                                <li class="active"><a href="{{url('/vendor/customer/'.$client->id.'/orders')}}">Orders</a></li>
-                                <li><a href="{{url('/vendor/customer/'.$client->id.'/billing')}}">Billing</a></li>
-                                <li><a href="{{url('/vendor/customer/'.$client->id.'/documents')}}">Documents</a></li>
+                                <li class="active"><a
+                                            href="{{url('/vendor/customer/'.$client->id.'/orders')}}">Orders</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane  mt-3" id="1"></div>
@@ -102,11 +102,11 @@
                                                 <div class="form-inline">
                                                     <div class="col-md-2 col-xs-12">
                                                         <label>Order Id</label>
-                                                        <input type="text" style="width: 100%;" class="form-control" name="orderId" value="<?=($_GET['orderId']) != '' ? $_GET['orderId'] : ''?>" id="orderId">
+                                                        <input type="text" style="width: 100%;" class="form-control" name="orderId" value="<?=isset($_GET['orderId']) && ($_GET['orderId']) != '' ? $_GET['orderId'] : ''?>" id="orderId">
                                                     </div>
                                                     <div class="col-md-2 col-xs-12">
                                                         <label>Customer</label>
-                                                        <input type="text" style="width: 100%;" class="form-control" name="clientName" value="<?=($_GET['clientName']) != '' ? $_GET['clientName'] : ''?>" id="customer">
+                                                        <input type="text" style="width: 100%;" class="form-control" name="clientName" value="<?=isset($_GET['clientName']) && ($_GET['clientName']) != '' ? $_GET['clientName'] : ''?>" id="customer">
                                                     </div>
                                                     <div class="col-md-2 col-xs-12">
                                                         <label>Job Type</label>
@@ -114,7 +114,7 @@
                                                             <option value="">--Order Type--</option>
                                                             <?php foreach ($jobType as $type){ ?>
                                                             <option value="{{$type->id}}"
-                                                                    <?php if($_GET['type'] == $type->id){?>selected<?php } ?>>{{$type->name}}</option>
+                                                                    <?php if(isset($_GET['type']) && $_GET['type'] == $type->id){?>selected<?php } ?>>{{$type->name}}</option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -123,11 +123,11 @@
                                                         <select class="form-control" name="method" style="width: 100%;">
                                                             <option value="">--Select--</option>
                                                             <option value="Paypal"
-                                                                    <?php if($_GET['method'] == 'Paypal'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['method']) && $_GET['method'] == 'Paypal'){?>selected<?php } ?>>
                                                                 PayPal
                                                             </option>
                                                             <option value="Credit Card"
-                                                                    <?php if($_GET['method'] == 'Credit Card'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['method']) && $_GET['method'] == 'Credit Card'){?>selected<?php } ?>>
                                                                 Credit Card
                                                             </option>
                                                         </select>
@@ -137,47 +137,47 @@
                                                         <select class="form-control" name="quickdate" style="width: 100%;">
                                                             <option value="">--Quick Date--</option>
                                                             <option value="yesterday"
-                                                                    <?php if($_GET['quickdate'] == 'yesterday'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'yesterday'){?>selected<?php } ?>>
                                                                 Yesterday
                                                             </option>
                                                             <option value="today"
-                                                                    <?php if($_GET['quickdate'] == 'today'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'today'){?>selected<?php } ?>>
                                                                 Today
                                                             </option>
                                                             <option value="tomorrow"
-                                                                    <?php if($_GET['quickdate'] == 'tomorrow'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'tomorrow'){?>selected<?php } ?>>
                                                                 Tomorrow
                                                             </option>
                                                             <option value="weekday"
-                                                                    <?php if($_GET['quickdate'] == 'weekday'){?>selected<?php } ?> >
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'weekday'){?>selected<?php } ?> >
                                                                 This Weekdays
                                                             </option>
                                                             <option value="wholeweek"
-                                                                    <?php if($_GET['quickdate'] == 'wholeweek'){?>selected<?php } ?> >
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'wholeweek'){?>selected<?php } ?> >
                                                                 This Whole Week
                                                             </option>
                                                             <option value="nextweek"
-                                                                    <?php if($_GET['quickdate'] == 'nextweek'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'nextweek'){?>selected<?php } ?>>
                                                                 Next Weekdays
                                                             </option>
                                                             <option value="thismonth"
-                                                                    <?php if($_GET['quickdate'] == 'thismonth'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'thismonth'){?>selected<?php } ?>>
                                                                 This Month
                                                             </option>
                                                             <option value="nextmonth"
-                                                                    <?php if($_GET['quickdate'] == 'nextmonth'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'nextmonth'){?>selected<?php } ?>>
                                                                 Next Month
                                                             </option>
                                                             <option value="thisyear"
-                                                                    <?php if($_GET['quickdate'] == 'thisyear'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'thisyear'){?>selected<?php } ?>>
                                                                 This Year
                                                             </option>
                                                             <option value="yeartodate"
-                                                                    <?php if($_GET['quickdate'] == 'yeartodate'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'yeartodate'){?>selected<?php } ?>>
                                                                 Year to Date
                                                             </option>
                                                             <option value="alltime"
-                                                                    <?php if($_GET['quickdate'] == 'alltime'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['quickdate']) && $_GET['quickdate'] == 'alltime'){?>selected<?php } ?>>
                                                                 All Time
                                                             </option>
                                                         </select>
@@ -191,7 +191,7 @@
                                                         <label>From</label>
                                                         <div id="datepicker2" class="input-group date custom-calendar"
                                                              data-date-format="mm-dd-yyyy">
-                                                            <input style="width: 100%;" class="form-control datepicker" id="fromTime" name="fromTime" type="text" value="<?=($_GET['fromTime']) != '' ? $_GET['fromTime'] : ''?>" style="width: 100%;"/>
+                                                            <input style="width: 100%;" class="form-control datepicker" id="fromTime" name="fromTime" type="text" value="<?=(isset($_GET['fromTime']) && $_GET['fromTime']) != '' ? $_GET['fromTime'] : ''?>" style="width: 100%;"/>
                                                             <span class="input-group-addon"><i class="fa fa-calendar fromTimeCalendar"></i></span>
                                                         </div>
                                                     </div>
@@ -201,7 +201,7 @@
                                                              data-date-format="mm-dd-yyyy">
                                                             <input class="form-control datepicker" id="toTime"
                                                                    name="toTime" type="text" style="width: 100%;"
-                                                                   value="<?=($_GET['toTime']) != '' ? $_GET['toTime'] : ''?>"/>
+                                                                   value="<?=(isset($_GET['toTime']) && $_GET['toTime']) != '' ? $_GET['toTime'] : ''?>"/>
                                                             <span class="input-group-addon"><i class="fa fa-calendar toTimeCalendar"></i></span>
                                                         </div>
                                                     </div>
@@ -210,31 +210,31 @@
                                                         <select class="form-control" name="status" style="width: 100%;">
                                                             <option value="">--Status--</option>
                                                             <option value="scheduled"
-                                                                    <?php if($_GET['status'] == 'scheduled'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'scheduled'){?>selected<?php } ?>>
                                                                 Scheduled
                                                             </option>
                                                             <option value="completed"
-                                                                    <?php if($_GET['status'] == 'completed'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'completed'){?>selected<?php } ?>>
                                                                 Completed
                                                             </option>
                                                             <option value="at plant completed"
-                                                                    <?php if($_GET['status'] == 'at plant completed'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'at plant completed'){?>selected<?php } ?>>
                                                                 At Plant Completed
                                                             </option>
                                                             <option value="in transit"
-                                                                    <?php if($_GET['status'] == 'in transit'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'in transit'){?>selected<?php } ?>>
                                                                 In Transit
                                                             </option>
                                                             <option value="at plant"
-                                                                    <?php if($_GET['status'] == 'at plant'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'at plant'){?>selected<?php } ?>>
                                                                 At Plant
                                                             </option>
                                                             <option value="on delivery"
-                                                                    <?php if($_GET['status'] == 'on delivery'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'on delivery'){?>selected<?php } ?>>
                                                                 On Delivery
                                                             </option>
                                                             <option value="completed at store"
-                                                                    <?php if($_GET['status'] == 'completed at store'){?>selected<?php } ?>>
+                                                                    <?php if(isset($_GET['status']) && $_GET['status'] == 'completed at store'){?>selected<?php } ?>>
                                                                 Completed At Store
                                                             </option>
                                                         </select>
@@ -271,8 +271,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane mt-3" id="4"></div>
-                                <div class="tab-pane mt-3" id="5"></div>
                             </div>
                         </div>
                     </div>

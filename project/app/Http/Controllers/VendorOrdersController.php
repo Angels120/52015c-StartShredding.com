@@ -21,6 +21,7 @@ class VendorOrdersController extends Controller
      */
     public function index()
     {
+
         $customer_array = [];
 
     	if(isset($_GET['orderForm'])){
@@ -113,7 +114,7 @@ class VendorOrdersController extends Controller
 			}
 			 
 			$orders = DB::select(DB::raw($orders));
-
+			
             foreach ($orders as $customer) {
 
                 if (!empty($customer->first_name)) {
@@ -140,7 +141,9 @@ class VendorOrdersController extends Controller
     	}
 		else{
 
-			$orders = OrderedProducts::where('vendorid',43)->orderBy('id','desc')->get();
+			$orders = DB::table('ordered_products')->select(DB::raw('distinct orderid,status'))->where('vendorid',43)->get();
+
+			//rderedProducts::select('distinct')->where('vendorid',43)->orderBy('id','desc')->get()->unique();
 			OrderedProducts::select('orders.status AS order_status','ordered_products.created_at AS order_created_at','clients.*','ordered_products.orderid')->where('ordered_products.vendorid',43)->orderBy('ordered_products.id','desc')
 			->join('orders','ordered_products.orderid','=','orders.id')
 			->leftjoin('clients','orders.customerid','=','clients.id')
@@ -173,6 +176,7 @@ class VendorOrdersController extends Controller
 			});
 
         }
+
 
         $customer_array = json_encode($customer_array);
 

@@ -97,7 +97,7 @@
                                                         <td>{{substr(strip_tags($blog->details),0,100)}}</td>
                                                         <td>{{$blog->views}}</td>
                                                         <td>
-                                                            <form method="POST" action="{!! action('BlogController@destroy',['id' => $blog->id]) !!}">
+                                                            <form method="POST" action="{!! action('BlogController@destroy',['blog' => $blog->id]) !!}">
                                                                 {{csrf_field()}}
                                                                 <input type="hidden" name="_method" value="DELETE">
                                                                 <a href="blog/{{$blog->id}}/edit" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>

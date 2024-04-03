@@ -18,7 +18,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div id="response"></div>
-                        <form method="POST" action="{!! action('SliderController@update',['id'=>$slider->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                        <form method="POST" action="{!! action('SliderController@update',['slider'=>$slider->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="item form-group">

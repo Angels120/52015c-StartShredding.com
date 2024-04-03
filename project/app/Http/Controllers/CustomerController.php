@@ -35,7 +35,7 @@ class CustomerController extends Controller
         $vendors = Vendors::where('status', 1)
             ->distinct('shop_name')
             ->get();
-
+ 
         $client_types = ClientType::all();
         $zones = Zones::all();
 
@@ -235,10 +235,4 @@ class CustomerController extends Controller
         echo "Customers successfully assigned";
 
     }
-
-    public function serviceAgreement()
-    {
-        return view('admin.service-agreement');
-    }
-    
 }

@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col col-lg-12">
                                     <div id="mapClass" style="height: 300px;width: 100%"></div>
-                                    <script src="https://maps.googleapis.com/maps/api/js?key=<?=env('GOOGLE_KEY')?>&libraries=places&callback=initMap"
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRu_qlT0HNjPcs45NXXiOSMd3btAUduSc&libraries=places&callback=initMap"
                                             async defer></script>
                                     <script>
                                         function initMap() {

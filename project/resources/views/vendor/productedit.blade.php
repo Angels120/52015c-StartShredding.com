@@ -19,7 +19,7 @@
                     <div class="panel-body">
                         <div class="gocover"></div>
                         <div id="response"></div>
-                        <form method="POST" action="{!! action('VendorProductsController@update',['id' => $product->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                        <form method="POST" action="{!! action('VendorProductsController@update',['product' => $product->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="item form-group">

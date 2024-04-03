@@ -298,9 +298,9 @@ and the Janeen Foundation" data-original-title="Make It Count">Make it count  <i
                                                 $product_id=Session::get('product_id');
                                                 ?>
                                                 <?php if(!Auth::guard('profile')->user()): ?>
-                                                    <a href="<?php echo e(url('/home/customers/products/').'/'.$product_id); ?>" class="btn btn-block btn-checkout checkout">Checkout</a>
+                                                    <a href="<?php echo e(url('/customers/products/').'/'.$product_id); ?>" class="btn btn-block btn-checkout checkout">Checkout</a>
                                                 <?php else: ?>
-                                                    <a href="<?php echo e(url('/home/customers/products/').'/'.$product_id); ?>" class="btn btn-block btn-checkout checkout">Checkout</a>
+                                                    <a href="<?php echo e(url('/customers/products/').'/'.$product_id); ?>" class="btn btn-block btn-checkout checkout">Checkout</a>
                                                 <?php endif; ?>
 
                                             </div>

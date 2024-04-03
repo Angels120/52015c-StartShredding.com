@@ -43,7 +43,7 @@
                                 <td>{{date($refProgram->expire_date)}}</td>
                                 <td>
                                     <form method="POST"
-                                        action="{!! action('ReferralProgramController@destroy',['id' => $refProgram->id]) !!}">
+                                        action="{!! action('ReferralProgramController@destroy',['referral' => $refProgram->id]) !!}">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <a href="referrals/{{$refProgram->id}}/edit" class="btn btn-primary btn-xs"><i

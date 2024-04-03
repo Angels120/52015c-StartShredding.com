@@ -87,18 +87,18 @@
                     <select name="status">
                         <option value="">---</option>
                         <option <?php if(isset($_GET['status']) AND ($_GET['status']==1)){ ?> selected<?php }?> value="1">Yes</option>
-                        <option <?php if(($_GET['status']!='') AND ($_GET['status']==0)){ ?> selected<?php }?> value="0">No</option>
+                        <option <?php if((isset($_GET['status']) && $_GET['status']!='') AND ($_GET['status']==0)){ ?> selected<?php }?> value="0">No</option>
                     </select>
                     &nbsp;<label>Repeat</label>&nbsp;
                     <select name="repeat">
                         <option value="">----</option>
-                        <option <?php if($_GET['repeat']=='Daily'){ ?> selected<?php }?> value="Daily">Daily</option>
-                        <option <?php if($_GET['repeat']=='Weekly'){ ?> selected<?php }?> value="Weekly">Weekly</option>
-                        <option <?php if($_GET['repeat']=='Monthly'){ ?> selected<?php }?> value="Monthly">Monthly</option>
-                        <option <?php if($_GET['repeat']=='Quarterly'){ ?> selected<?php }?> value="Quarterly">Qarterly</option>
-                        <option <?php if($_GET['repeat']=='Semi-Annual'){ ?> selected<?php }?> value="Semi-Annual">Semi-Annual</option>
-                        <option <?php if($_GET['repeat']=='Yearly'){ ?> selected<?php }?> value="Yearly">Yearly</option>
-                        <option <?php if($_GET['repeat']=='On-Call'){ ?> selected<?php }?> value="On-Call">On Call</option>
+                        <option <?php if(isset($_GET['repeat']) && $_GET['repeat']=='Daily'){ ?> selected<?php }?> value="Daily">Daily</option>
+                        <option <?php if(isset($_GET['repeat']) && $_GET['repeat']=='Weekly'){ ?> selected<?php }?> value="Weekly">Weekly</option>
+                        <option <?php if(isset($_GET['repeat']) && $_GET['repeat']=='Monthly'){ ?> selected<?php }?> value="Monthly">Monthly</option>
+                        <option <?php if(isset($_GET['repeat']) && $_GET['repeat']=='Quarterly'){ ?> selected<?php }?> value="Quarterly">Qarterly</option>
+                        <option <?php if(isset($_GET['repeat']) && $_GET['repeat']=='Semi-Annual'){ ?> selected<?php }?> value="Semi-Annual">Semi-Annual</option>
+                        <option <?php if(isset($_GET['repeat']) && $_GET['repeat']=='Yearly'){ ?> selected<?php }?> value="Yearly">Yearly</option>
+                        <option <?php if(isset($_GET['repeat']) && $_GET['repeat']=='On-Call'){ ?> selected<?php }?> value="On-Call">On Call</option>
                     </select>
                     &nbsp;<label>Business Name</label>&nbsp;
                     <input type="text" name="business" style="width:150px;" value="<?=isset($_GET['business'])?$_GET['business']:'';?>">

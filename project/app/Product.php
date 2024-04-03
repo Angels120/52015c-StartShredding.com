@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = [id,'title', 'category', 'tags', 'description','short_description','sizes', 'price', 'plant_cost', 'previous_price', 'stock', 'feature_image', 'policy', 'featured', 'views', 'created_at', 'updated_at', 'status','is_tiers','tiers'];
+    protected $fillable = ['title', 'category', 'tags', 'description','short_description','sizes', 'price', 'plant_cost', 'previous_price', 'stock', 'feature_image', 'policy', 'featured', 'views', 'created_at', 'updated_at', 'status','is_tiers','tiers'];
 
-    public static $withoutAppends = true;
+    public static $withoutAppends = false;
 
 
     public function getCategoryAttribute($category)

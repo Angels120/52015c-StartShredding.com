@@ -51,7 +51,7 @@
                 @endif
                 @php
                     $value = 0;
-                    if($referral->program->name == 'Sign-up Bonus'){ $value = $referral->program->amount; }
+                    // if($referral->program->name == 'Sign-up Bonus'){ $value = $referral->program->amount; }
                 @endphp
                 <div class="row">
                     <div class="col-sm-12 col-md-8" id="refer-column">

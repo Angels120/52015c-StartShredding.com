@@ -85,11 +85,6 @@
         type="text/javascript"></script>
 <script src="{{ URL::asset('new_assets/assets/plugins/datatables-responsive/js/datatables.responsive.js')}}"
         type="text/javascript"></script>
-<script src="{{ URL::asset('new_assets/assets/plugins/bootstrap-form-wizard/js/jquery.bootstrap.wizard.min.js')}}"
-        type="text/javascript"></script>
-<script src="{{ URL::asset('new_assets/assets/js/form_wizard.js')}}"
-        type="text/javascript"></script>      
-            
 <!-- END VENDOR JS -->
 <!-- BEGIN CORE TEMPLATE JS -->
 <!-- BEGIN CORE TEMPLATE JS -->

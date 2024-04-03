@@ -56,7 +56,7 @@
                                     {{ $coupon->expiry_date }}
                                 </td>
                                 <td>
-                                    <form method="POST" action="{!! action('CouponController@destroy',['id' => $coupon->id]) !!}">
+                                    <form method="POST" action="{!! action('CouponController@destroy',['coupon' => $coupon->id]) !!}">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <a href="{!! url('admin/coupons') !!}/{{$coupon->id}}/edit" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>

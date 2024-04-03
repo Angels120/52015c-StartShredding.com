@@ -60,10 +60,11 @@
                         <div id="exTab2" class="col-12">
                             <ul class="nav nav-tabs">
                                 <li><a href="{{url('/vendor/customer/'.$client->id)}}">Overview</a></li>
-                                <li class="active"><a href="{{url('/vendor/customer/'.$client->id.'/templates')}}">Templates</a></li>
-                                <li><a href="{{url('/vendor/customer/'.$client->id.'/orders')}}">Orders</a></li>
-                                <li><a href="{{url('/vendor/customer/'.$client->id.'/billing')}}">Billing</a></li>
-                                <li><a href="{{url('/vendor/customer/'.$client->id.'/documents')}}">Documents</a></li>
+                                <li class="active"><a href="{{url('/vendor/customer/'.$client->id.'/templates')}}">Templates</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/vendor/customer/'.$client->id.'/orders')}}">Orders</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane  mt-3" id="1">
@@ -75,7 +76,7 @@
                                                 <div class="form-inline">
                                                     <div class="col-md-2">
                                                         <label>Name#</label>
-                                                        <input type="text" class="form-control order-id" name="template_name" value="<?=($_GET['template_name']) != '' ? $_GET['template_name'] : ''?>" id="template_name">
+                                                        <input type="text" class="form-control order-id" name="template_name" value="<?=isset($_GET['template_name']) && ($_GET['template_name']) != '' ? $_GET['template_name'] : ''?>" id="template_name">
                                                     </div>
                                                     <div class="col-md-2">
                                                         <label>Job Type</label>
@@ -83,7 +84,7 @@
                                                             <option value="">--Job Type--</option>
                                                             <?php foreach ($jobType as $type){ ?>
                                                             <option value="{{$type->id}}"
-                                                                    <?php if($_GET['type'] == $type->id){?>selected<?php } ?>>{{$type->name}}</option>
+                                                                    <?php if(isset($_GET['type']) && $_GET['type'] == $type->id){?>selected<?php } ?>>{{$type->name}}</option>
                                                             <?php } ?>
                                                         </select>
                                                     </div>
@@ -104,14 +105,14 @@
                                                         <label>From</label>
                                                         <div id="datepicker2" class="input-group date custom-calendar"
                                                              data-date-format="mm-dd-yyyy">
-                                                            <input class="form-control datepicker" id="fromTime" name="fromTime" type="text" value="<?=($_GET['fromTime']) != '' ? $_GET['fromTime'] : ''?>" style="width: 100%;"/>
+                                                            <input class="form-control datepicker" id="fromTime" name="fromTime" type="text" value="<?=(isset($_GET['fromTime']) && $_GET['fromTime']) != '' ? $_GET['fromTime'] : ''?>" style="width: 100%;"/>
                                                             <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar fromTimeCalendar"></i></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <label>To</label>
                                                         <div id="datepicker3" class="input-group date custom-calendar" data-date-format="mm-dd-yyyy">
-                                                            <input class="form-control datepicker" id="toTime" name="toTime" type="text" value="<?=($_GET['toTime']) != '' ? $_GET['toTime'] : ''?>"/>
+                                                            <input class="form-control datepicker" id="toTime" name="toTime" type="text" value="<?=(isset($_GET['toTime']) && $_GET['toTime']) != '' ? $_GET['toTime'] : ''?>"/>
                                                             <span class="input-group-addon" ><i class="glyphicon glyphicon-calendar toTimeCalendar" for="toTime"></i></span>
                                                         </div>
                                                      </div>
@@ -133,14 +134,14 @@
                                             <div id="example_wrapper" class="dataTables_wrapper no-footer">
                                                 <table class="table table-bordered w-100" id="templates-table">
                                                     <thead>
-                                                        <tr>
-                                                            <th>Id</th>
-                                                            <th>Name</th>
-                                                            <th>Job Type</th>
-                                                            <th>Repeat</th>
-                                                            <th>Last Completed Date</th>
-                                                            <th>Action</th>
-                                                        </tr>
+                                                    <tr>
+                                                        <th>Id</th>
+                                                        <th>Name</th>
+                                                        <th>Job Type</th>
+                                                        <th>Repeat</th>
+                                                        <th>Last Completed Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
                                                     </thead>
                                                 </table>
                                             </div>
@@ -148,10 +149,6 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane mt-3" id="3">
-                                </div>
-                                <div class="tab-pane mt-3" id="4">
-                                </div>
-                                <div class="tab-pane mt-3" id="5">
                                 </div>
                             </div>
                         </div>

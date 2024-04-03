@@ -23,7 +23,7 @@
                                 </div>
                             @endif
                         </div>
-                        <form method="POST" action="{!! action('SocialLinkController@update',['id' => $social->id]) !!}" class="form-horizontal form-label-left">
+                        <form method="POST" action="{!! action('SocialLinkController@update',['social' => $social->id]) !!}" class="form-horizontal form-label-left">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="PATCH">
                             <div class="item form-group">

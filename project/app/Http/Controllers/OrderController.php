@@ -35,6 +35,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+
         $order_status_array = array(0 =>'Scheduled',1 =>'In Transit',2 =>'At Plant',3 =>'On Delivery',4 =>'At_Plant Completed',5 =>'Completed',6 =>'Completed At Store');
         $order_status_mails = array();
         foreach ($order_status_array as $row)
@@ -81,8 +82,7 @@ class OrderController extends Controller
                 ]);
             }
         }
-        $orders = Order::leftjoin('clients', 'orders.customerid', '=', 'clients.id')
-            ->where('payment_status', "Completed")->orderBy('id', 'desc')
+        $orders = Order::leftjoin('clients', 'orders.customerid', '=', 'clients.id')->orderBy('id', 'desc')
             ->select('orders.*','clients.latitude','clients.longitude')->get();
         $customer_array = [];
         foreach ($orders as $customer){

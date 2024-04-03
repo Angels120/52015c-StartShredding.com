@@ -11,6 +11,7 @@ class ReferralLink extends Model
 
     protected static function boot()
     {
+        parent::boot();
         static::creating(function (ReferralLink $model) {
             $model->generateCode();
         });

@@ -14,15 +14,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+// if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+//     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+// }
 
-    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-}
 //new-template
 Route::resource('user-dashboard', 'UserDetailController');
 Route::get('user/account-details', 'UserDetailController@accinfo')->name('user.account-details');
-Route::post('user/account-update/{id}', 'UserDetailController@updateDetails')->name('user.update');
-Route::post('user/billing-update/{id}', 'UserDetailController@updateBilling')->name('user.billing-update');
+// Route::post('user/account-update/{id}', 'UserDetailController@updateDetails')->name('user.update');
 Route::post('user/add-multiple-address/{id}', 'UserDetailController@addMultipleAddress')->name('user.add-multiple-address');
 Route::post('user/update-multiple-address/{id}', 'UserDetailController@updateMultipleAddress');
 Route::post('user/password-change/{id}', 'UserDetailController@passChange')->name('user.password-change');
@@ -37,6 +36,7 @@ Route::get('user/multiple-address-edit/{id}', 'UserDetailController@multipleAddr
 Route::get('user/refer-friend', 'UserDetailController@referFriend')->name('user.refer-friend');
 Route::post('user/send-refer-mail', 'UserDetailController@sendReferMail')->name('user.send-refer-mail');
 Route::get('user/order-details/{id}', 'UserDetailController@userOrderDetails');
+Route::get('user/service-agreement/{id}', 'ServiceAgreementController@view');
 Route::post('user/search-data', 'UserDetailController@searchData')->name('user.search-data');
 
 Route::get('/user-billing-setting', 'PageController@getUserBilling')->name('user-billing-setting');
@@ -160,6 +160,7 @@ Route::get('/vendor/withdrawmoney', 'VendorController@withdraw');
 Route::post('/vendor/withdrawsubmit', 'VendorController@withdrawsubmit')->name('account.withdraw.submit');;
 Route::get('/vendor/dashboard', 'VendorController@index')->name('vendor.dashboard');
 Route::get('vendor/products/status/{id}/{status}', 'VendorProductsController@status');
+
 Route::resource('/vendor/products', 'VendorProductsController');
 
 Route::get('vendor/vieworders/{status}', 'VendorController@vieworders');
@@ -197,11 +198,6 @@ Route::get('/admin/customers/{id}', 'CustomerController@show');
 Route::any('/searchAjaxCities', 'CustomerController@getCities');
 Route::any('/assignCustomersToVendor', 'CustomerController@assignCustomers');
 Route::post('/admin/customers/searchResults', 'CustomerController@getCustomerSearchResults');
-
-// service agreement
-Route::get('/service-agreement/{id}', 'IndexController@serviceAgreement');
-Route::get('/service-agreements/{id}', 'IndexController@serviceAgreements');
-
 Route::resource('/admin/referrals', 'ReferralProgramController');
 Route::get('/vendor/activation/{token}', 'Auth\ResetPasswordController@vendorActivation');
 Route::get('/vendor/resetPassword/{token}', 'Auth\ResetPasswordController@vendorResetPassword');
@@ -246,10 +242,12 @@ Route::post('admin/pagesettings/about', 'PageSettingsController@about');
 Route::post('admin/pagesettings/faq', 'PageSettingsController@faq');
 Route::post('admin/pagesettings/contact', 'PageSettingsController@contact');
 Route::resource('/admin/pagesettings', 'PageSettingsController');
+
+Route::resource('/admin/products', 'ProductController');
 Route::get('admin/products/pending', 'ProductController@pending');
 Route::get('admin/products/pending/{id}', 'ProductController@pendingdetails');
 Route::get('admin/products/status/{id}/{status}', 'ProductController@status');
-Route::resource('/admin/products', 'ProductController');
+
 Route::get('admin/ads/status/{id}/{status}', 'AdvertiseController@status');
 Route::resource('/admin/ads', 'AdvertiseController');
 Route::resource('/admin/social', 'SocialLinkController');
@@ -265,7 +263,9 @@ Route::post('/vendor/vendorpassword/change/{id}', 'VendorProfileController@chang
 
 Route::post('/vendor/login-accounts', 'VendorProfileController@loginuser');
 Route::post('/vendor/bank-account', 'VendorProfileController@bankaccount');
+
 Route::resource('/vendor/settings', 'VendorProfileController');
+
 Route::get('/vendor/delete-bank-account', 'VendorProfileController@deletebankaccount');
 Route::get('/vendor/delete-login-user', 'VendorProfileController@deleteloginuser');
 Route::get('/admin/withdraws/pending', 'WithdrawController@pendings');
@@ -288,7 +288,6 @@ Route::post('/admin/orders/searchResults', 'OrderController@searchResults');
 // Route::get('/payment/cancle', 'PaymentController@paycancle')->name('payment.cancle');
 // Route::get('/payment/return', 'PaymentController@payreturn')->name('payment.return');
 // Route::post('/payment/notify', 'PaymentController@notify')->name('payment.notify');
-Route::post('/vendor/upload/doc/{id}', 'VendorOrderController@documentUpload')->name('upload.document');
 
 //paypal routes
 // Route::post('payment/paypal', 'PayPalController@payment')->name('payment');
@@ -385,9 +384,6 @@ Route::any('/client_user_activate/{takn}', 'ClientOrderController@client_user_ac
 Route::get('/vendor/customer/{id}', 'VendorController@show')->name('vendor.customer.show');
 Route::get('/vendor/customer/{id}/templates', 'VendorController@templates')->name('vendor.customer.templates');
 Route::get('/vendor/customer/{id}/orders', 'VendorController@orders')->name('vendor.customer.orders');
-Route::get('/vendor/customer/{id}/billing', 'VendorController@billing')->name('vendor.customer.billing');
-Route::post('/vendor/customer/{id}/addBilling', 'VendorController@addBilling')->name('vendor.customer.add.billing');
-Route::get('/vendor/customer/{id}/documents', 'VendorController@documents')->name('vendor.customer.documents');
 Route::any('/vendor/order/get_ajax_product', 'VendorOrderController@getAJAXProduct')->name('get_ajax_product');
 Route::resource('/vendor/order-template', 'OrderTemplateController');
 Route::post('/vendor/order-template/generate', 'OrderTemplateController@makeRecurringOrder');
@@ -432,7 +428,6 @@ Route::post('/shop-login', 'IndexController@login')->name('home.login.submit');
 Route::get('/shop-logout', 'IndexController@logout')->name('home.logout');
 Route::post('/shop-password-change/{id}', 'IndexController@passChange')->name('home.user-password-change');
 Route::post('/shop-account-update/{id}', 'IndexController@updateDetails')->name('home.user-update');
-Route::post('/shop-account-client-card-update/{customerid}', 'IndexController@updateCardDetails')->name('home.client-card-update');
 Route::post('/shop-add-multiple-address/{id}', 'IndexController@addMultipleAddress')->name('home.user-add-multiple-address');
 Route::post('/shop-update-multiple-address/{id}', 'IndexController@updateMultipleAddress')->name('home.updateMultipleAddress');
 Route::post('/shop-update-multiple-address-popup/{id}', 'IndexController@updateMultipleAddressPopup')->name('home.updateMultipleAddress.popup');
@@ -445,7 +440,7 @@ Route::get('/shop-multiple-address-remove/{id}', 'IndexController@multipleAddres
 Route::get('/shop-order-details/{id}', 'IndexController@userOrderDetails')->name('home.user-order-details');
 Route::get('/makeitcount', 'IndexController@makeItCount')->name('home.makeitcount');
 Route::get('cart', 'IndexController@cart')->name('home.cart');
-Route::get('/shop-cart', 'IndexController@cart')->name('home.cart');
+Route::get('/shop-cart', 'IndexController@cart')->name('home.shopCart');
 Route::get('/shop/{id}/{mcat_id}/{scat_id}/{page}', 'IndexController@showMasksPage')->name('home.show');
 Route::get('/shop-product/{id}/{page}', 'IndexController@productShop')->name('home.product');
 Route::post('/shop-register-order', 'IndexController@registerOrder')->name('home.register.submit.order');

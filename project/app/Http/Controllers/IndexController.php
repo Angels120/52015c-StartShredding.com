@@ -7,7 +7,6 @@ use Auth;
 use App\Coupon;
 use App\AddressMultiple;
 use App\Clients;
-use App\ClientCreditCard;
 use App\UserProfile;
 use App\Mail\QuoteRequestMail;
 use App\Mail\ShopOrderPlaced;
@@ -46,66 +45,6 @@ class IndexController extends Controller
         return view('home.index');
     }
 
-    public function serviceAgreement(Request $request, $id)
-    {
-	$order = Order::where('id', $id)->first();
-	$card_details = ClientCreditCard::where('customerid', $order->customerid)->first();
-    $customer = Clients::where('id', $order->customerid)->first();
-	$order_details= OrderedProducts::where('orderid', $order->id)->join('products', 'products.id', '=', 'ordered_products.productid')->get();
-    // $sql = "SELECT ordered_products.quantity,products.title,ordered_products.cost as total,(ordered_products.cost/ordered_products.quantity) AS rate 
-    //         FROM ordered_products 
-    //         JOIN products ON products.id=ordered_products.productid
-    //         WHERE ordered_products.orderid=9";
-
-    try {
-        // $salaries = DB::table('ordered_products')
-        //         ->selectRaw('ordered_products.quantity,products.title,ordered_products.cost as total,(ordered_products.cost/ordered_products.quantity) AS rate')
-        //         ->join('products', 'products.id', '=', 'ordered_products.productid')
-        //         ->where('ordered_products.orderid', 9)
-        //         ->get();
-    } catch (Throwable $e) {
-        // return response()->json($e->getMessage());
-    }
-
-    
-    // $order_details = DB::select($sql);
-    // $data = $order;
-    // var_dump($data);
-	    // return response()->json($order_details);
-        return view('home.service-agreement', compact('order', 'card_details', 'order_details','customer'));
-    }
-
-
-    public function serviceAgreements(Request $request, $id)
-    {
-	$order = Order::where('id', $id)->first();
-	$card_details = ClientCreditCard::where('customerid', $order->customerid)->first();
-    $customer = Clients::where('id', $order->customerid)->first();
-	$order_details= OrderedProducts::where('orderid', $order->id)->join('products', 'products.id', '=', 'ordered_products.productid')->get();
-    // $sql = "SELECT ordered_products.quantity,products.title,ordered_products.cost as total,(ordered_products.cost/ordered_products.quantity) AS rate 
-    //         FROM ordered_products 
-    //         JOIN products ON products.id=ordered_products.productid
-    //         WHERE ordered_products.orderid=9";
-
-    try {
-        // $salaries = DB::table('ordered_products')
-        //         ->selectRaw('ordered_products.quantity,products.title,ordered_products.cost as total,(ordered_products.cost/ordered_products.quantity) AS rate')
-        //         ->join('products', 'products.id', '=', 'ordered_products.productid')
-        //         ->where('ordered_products.orderid', 9)
-        //         ->get();
-    } catch (Throwable $e) {
-        // return response()->json($e->getMessage());
-    }
-
-    
-    // $order_details = DB::select($sql);
-    // $data = $order;
-    // var_dump($data);
-	    // return response()->json($order_details);
-        return view('home.service-agreements', compact('order', 'card_details', 'order_details','customer'));
-    }
-
-
     public function saveAddress(Request $request)
     {
         Session::put('shop_country', $request->country);
@@ -138,7 +77,12 @@ class IndexController extends Controller
             ->whereIn('category', [84])
             ->orderBy('id', 'ASC')
             ->first();
-        $quantity = Cart::where('uniqueid', Session::get('uniqueid'))->where('product', $id)->first()->quantity;
+
+            $quantity = 0;    
+        $cartItem = Cart::where('uniqueid', Session::get('uniqueid'))->where('product', $id)->first();
+        if ($cartItem != null) {
+            $quantity = $cartItem->quantity;
+        }
 
         return view('home.product', compact('products', 'quantity'));
     }
@@ -216,11 +160,11 @@ class IndexController extends Controller
             ]);
 
             VendorCustomers::create([
-               'vendor_id'=>43,
-               'customer_id'=>$user->id,
-               'phone'=>$request->phone,
-                'name'=>$request->firstname . " " . $request->lastname,
-                'business_name'=>$request->company,
+                'vendor_id' => 43,
+                'customer_id' => $user->id,
+                'phone' => $request->phone,
+                'name' => $request->firstname . " " . $request->lastname,
+                'business_name' => $request->company,
                 'status' => 1,
             ]);
 
@@ -259,6 +203,18 @@ class IndexController extends Controller
             'status' => "scheduled"
         ]);
 
+
+        OrderedProducts::create([
+            'orderid' => $order->id,
+            'owner' => 'admin',
+            'vendorid' => 43,
+            'productid' => 0,
+            'quantity' => $request->quantity,
+            'payment' => "pending",
+            'cost' => 0
+
+        ]);
+
         if ($request->idealstart_date == 'SPECIFIC') {
             $date = 'SPECIFIC ' . $request->specificpost_date . ' (' . $request->am_pm . ')';
         } elseif ($request->idealstart_date == 'NOW' || $request->idealstart_date == '') {
@@ -275,13 +231,13 @@ class IndexController extends Controller
             'quantity' => $qty,
             'additional_info' => $request->notes,
             'start_date' => $date,
-            'promo_code'=>$data['promocode']
+            'promo_code' => $data['promocode']
         ]);
 
 
         $EmailSubject = EmailSubject::where('token', 'k7hjc7hl')->first();
         $EmailTemplate = EmailTemplate::where('domain', 2)->where('subject_id', $EmailSubject['id'])->first();
-        Mail::to($user->email)->queue(new QuoteRequestMail($data, $order->id,$EmailSubject['subject'], $EmailTemplate));
+        Mail::to($user->email)->queue(new QuoteRequestMail($data, $order->id, $EmailSubject['subject'], $EmailTemplate));
 
         $EmailSubject = EmailSubject::where('token', 'dsk41ghf')->first();
         $EmailTemplate = EmailTemplate::where('domain', 2)->where('subject_id', $EmailSubject['id'])->first();
@@ -318,7 +274,7 @@ class IndexController extends Controller
     //     $arr['status'] = 1;
     //     return $arr;
     // }
-    
+
     public function applyCoupon(Request $request)
     {
         $coupon = Coupon::where('code', $request->coupon_code)->first();
@@ -444,12 +400,14 @@ class IndexController extends Controller
                     $BoughtGiftCard->gift_card_id = $GiftCard->id;
                     $BoughtGiftCard->bought_by_id = $user['id'];
                     $BoughtGiftCard->is_payment_completed = 1;
-                    $BoughtGiftCard->payment_id = str_random(4) . time();;
+                    $BoughtGiftCard->payment_id = str_random(4) . time();
+                    ;
                     $BoughtGiftCard->payment_token = 'EC-' . str_random(6) . time();
                     $BoughtGiftCard->current_owner_id = $user['id'];
                     $BoughtGiftCard->is_redeemed = 0;
                     $BoughtGiftCard->is_gifted = 1;
-                    $BoughtGiftCard->auth_code = uniqid(str_replace(" ", "_", strtolower('gift')) . "_", true);;
+                    $BoughtGiftCard->auth_code = uniqid(str_replace(" ", "_", strtolower('gift')) . "_", true);
+                    ;
                     $BoughtGiftCard->save();
                 } catch (\Beanstream\Exception $e) {
                     return redirect()->back()->withErrors([$e->getMessage()]);
@@ -500,7 +458,7 @@ class IndexController extends Controller
         Session::flush();
 
 
-        if (isset($data['lat'])) {
+        if (isset ($data['lat'])) {
             $user = Clients::create([
                 'name' => $name,
                 'first_name' => $data['first_name'],
@@ -509,41 +467,41 @@ class IndexController extends Controller
                 'email' => $data['email'],
                 'unit_no' => $data['unit_no'],
                 'buzz_code' => $data['buzz_code'],
-                'address' => isset($data['address']) ? $data['address'] : '',
-                'zip' => isset($data['postal_code']) ? $data['postal_code'] : '',
-                'city' => isset($data['locality']) ? $data['locality'] : '',
-                'latitude' => isset($data['lat']) ? $data['lat'] : '',
-                'longitude' => isset($data['lng']) ? $data['lng'] : '',
-                'balance' => isset($data['balance']) ? $data['balance'] : 0,
+                'address' => isset ($data['address']) ? $data['address'] : '',
+                'zip' => isset ($data['postal_code']) ? $data['postal_code'] : '',
+                'city' => isset ($data['locality']) ? $data['locality'] : '',
+                'latitude' => isset ($data['lat']) ? $data['lat'] : '',
+                'longitude' => isset ($data['lng']) ? $data['lng'] : '',
+                'balance' => isset ($data['balance']) ? $data['balance'] : 0,
                 'password' => Hash::make($data['password']),
                 'is_activated' => 1,
             ]);
 
             VendorCustomers::create([
-                'vendor_id'=>43,
-                'customer_id'=>$user->id,
-                'phone'=>$data['phone'],
-                 'name'=>$data['first_name'] . " " . $data['last_name'],
-                 'business_name'=>'',
-                 'status' => 1,
-             ]);
+                'vendor_id' => 43,
+                'customer_id' => $user->id,
+                'phone' => $data['phone'],
+                'name' => $data['first_name'] . " " . $data['last_name'],
+                'business_name' => '',
+                'status' => 1,
+            ]);
 
             AddressMultiple::create([
                 'user_id' => $user->id,
                 'address_alias' => "Default",
-                'address' => isset($data['address']) ? $data['address'] : '',
-                'city' => isset($data['locality']) ? $data['locality'] : '',
-                'zip' => isset($data['postal_code']) ? $data['postal_code'] : '',
-                'province' => isset($data['administrative_area_level_1']) ? $data['administrative_area_level_1'] : '',
-                'street' => isset($data['route']) ? $data['route'] : '',
-                'longitude' => isset($data['lng']) ? $data['lng'] : '',
-                'latitude' => isset($data['lat']) ? $data['lat'] : '',
+                'address' => isset ($data['address']) ? $data['address'] : '',
+                'city' => isset ($data['locality']) ? $data['locality'] : '',
+                'zip' => isset ($data['postal_code']) ? $data['postal_code'] : '',
+                'province' => isset ($data['administrative_area_level_1']) ? $data['administrative_area_level_1'] : '',
+                'street' => isset ($data['route']) ? $data['route'] : '',
+                'longitude' => isset ($data['lng']) ? $data['lng'] : '',
+                'latitude' => isset ($data['lat']) ? $data['lat'] : '',
             ]);
 
 
 
             //if address set for session
-        } else if (isset($session_address['lat'])) {
+        } else if (isset ($session_address['lat'])) {
             $user = Clients::create([
                 'name' => $name,
                 'first_name' => $data['first_name'],
@@ -552,12 +510,12 @@ class IndexController extends Controller
                 'email' => $data['email'],
                 'unit_no' => $data['unit_no'],
                 'buzz_code' => $data['buzz_code'],
-                'address' => isset($session_address['address']) ? $session_address['address'] : '',
-                'zip' => isset($session_address['postal_code']) ? $session_address['postal_code'] : '',
-                'city' => isset($session_address['locality']) ? $session_address['locality'] : '',
-                'latitude' => isset($session_address['lat']) ? $session_address['lat'] : '',
-                'longitude' => isset($session_address['lng']) ? $session_address['lng'] : '',
-                'balance' => isset($data['balance']) ? $data['balance'] : 0,
+                'address' => isset ($session_address['address']) ? $session_address['address'] : '',
+                'zip' => isset ($session_address['postal_code']) ? $session_address['postal_code'] : '',
+                'city' => isset ($session_address['locality']) ? $session_address['locality'] : '',
+                'latitude' => isset ($session_address['lat']) ? $session_address['lat'] : '',
+                'longitude' => isset ($session_address['lng']) ? $session_address['lng'] : '',
+                'balance' => isset ($data['balance']) ? $data['balance'] : 0,
                 'password' => Hash::make($data['password']),
                 'is_activated' => 1,
             ]);
@@ -565,22 +523,22 @@ class IndexController extends Controller
             AddressMultiple::create([
                 'user_id' => $user->id,
                 'address_alias' => "Default",
-                'address' => isset($session_address['address']) ? $session_address['address'] : '',
-                'city' => isset($session_address['locality']) ? $session_address['locality'] : '',
-                'zip' => isset($session_address['postal_code']) ? $session_address['postal_code'] : '',
-                'province' => isset($session_address['administrative_area_level_1']) ? $session_address['administrative_area_level_1'] : '',
-                'street' => isset($session_address['route']) ? $session_address['route'] : '',
-                'longitude' => isset($session_address['lng']) ? $session_address['lng'] : '',
-                'latitude' => isset($session_address['lat']) ? $session_address['lat'] : '',
+                'address' => isset ($session_address['address']) ? $session_address['address'] : '',
+                'city' => isset ($session_address['locality']) ? $session_address['locality'] : '',
+                'zip' => isset ($session_address['postal_code']) ? $session_address['postal_code'] : '',
+                'province' => isset ($session_address['administrative_area_level_1']) ? $session_address['administrative_area_level_1'] : '',
+                'street' => isset ($session_address['route']) ? $session_address['route'] : '',
+                'longitude' => isset ($session_address['lng']) ? $session_address['lng'] : '',
+                'latitude' => isset ($session_address['lat']) ? $session_address['lat'] : '',
             ]);
             VendorCustomers::create([
-                'vendor_id'=>43,
-                'customer_id'=>$user->id,
-                'phone'=>$data['phone'],
-                 'name'=>$data['first_name'] . " " . $data['last_name'],
-                 'business_name'=>'',
-                 'status' => 1,
-             ]);
+                'vendor_id' => 43,
+                'customer_id' => $user->id,
+                'phone' => $data['phone'],
+                'name' => $data['first_name'] . " " . $data['last_name'],
+                'business_name' => '',
+                'status' => 1,
+            ]);
 
         }
 
@@ -614,7 +572,7 @@ class IndexController extends Controller
         $email = $request->email;
         $email_subject = \App\Models\EmailSubject::where('token', '=', 'G9qRHttew')->first();
         $template = \App\Models\EmailTemplate::where('subject_id', '=', $email_subject->id)->first();
-        if (isset($referal_link) && isset($email)) {
+        if (isset ($referal_link) && isset ($email)) {
             $user = Auth::guard('profile')->user();
             try {
                 \Illuminate\Support\Facades\Mail::to($email)->send(new PromoRegistrationMail($referal_link, $email_subject->subject, $template, $user->first_name, $user->last_name));
@@ -669,15 +627,15 @@ class IndexController extends Controller
 
     public function showMasksPage($vernder_id, $m_id, $s_id, $name)
     {
-        $m_id = (int)$m_id;
-        $s_id = (int)$s_id;
+        $m_id = (int) $m_id;
+        $s_id = (int) $s_id;
         $products = Product::where('vendorid', $vernder_id)->where('approved', 'yes')->where('category', 'like', '%' . $s_id . '%')->get();
         return view('home.shop.masks', ['products' => $products]);
     }
 
     public function productShop($id, $name)
     {
-        $id = (int)$id;
+        $id = (int) $id;
         $user = Auth::guard('profile')->user();
         $productdata = Product::findOrFail($id);
         $data['views'] = $productdata->views + 1;
@@ -711,7 +669,7 @@ class IndexController extends Controller
         if (Auth::guard('profile')->user()) {
             $user = Clients::find(Auth::user()->id);
             return redirect()->route('home.confirm')->with(['response' => $response, 'user' => $user]);
-        } else if (Auth::guard('profile')->user() and !empty($count)) {
+        } else if (Auth::guard('profile')->user() and !empty ($count)) {
             return redirect(url('/customers'));
         }
         return view('home.shop.order-summary', compact('response'));
@@ -733,7 +691,7 @@ class IndexController extends Controller
             $subtotal = 0;
             foreach ($cart_items as $key => $cart_item) {
                 $data['items'][$key]['name'] = $cart_item['title'];
-                $data['items'][$key]['price'] = number_format((float)$cart_item->cost * $cart_item->quantity, 2, '.', '');
+                $data['items'][$key]['price'] = number_format((float) $cart_item->cost * $cart_item->quantity, 2, '.', '');
                 $data['items'][$key]['currency'] = 'CAD';
                 $data['items'][$key]['qty'] = $cart_item['quantity'];
 
@@ -741,12 +699,12 @@ class IndexController extends Controller
 
                 if ($cart_items->count() - 1 == $key) {
                     $data['items'][$key + 1]['name'] = 'Delivery';
-                    $data['items'][$key + 1]['price'] = number_format((float)$settings->delivery_fee, 2, '.', '');
+                    $data['items'][$key + 1]['price'] = number_format((float) $settings->delivery_fee, 2, '.', '');
                     $data['items'][$key + 1]['currency'] = 'CAD';
                     $data['items'][$key + 1]['qty'] = 1;
 
                     $data['items'][$key + 2]['name'] = 'Tax(13%)';
-                    $data['items'][$key + 2]['price'] = number_format((float)($subtotal + $settings->delivery_fee) * 13 / 100, 2, '.', '');
+                    $data['items'][$key + 2]['price'] = number_format((float) ($subtotal + $settings->delivery_fee) * 13 / 100, 2, '.', '');
                     $data['items'][$key + 2]['currency'] = 'CAD';
                     $data['items'][$key + 2]['qty'] = 1;
                 }
@@ -775,7 +733,7 @@ class IndexController extends Controller
             // ]);
             // place the order .......................................
             $user_id = Session::get('user_id');
-            if (empty(Auth::guard('profile')->user())) {
+            if (empty (Auth::guard('profile')->user())) {
                 $user = Clients::where('id', $user_id)->first();
             } else {
                 $user = Auth::guard('profile')->user();
@@ -791,7 +749,7 @@ class IndexController extends Controller
             $subtotal = 0;
             foreach ($cart_items as $key => $cart_item) {
                 $data['items'][$key]['name'] = $cart_item['title'];
-                $data['items'][$key]['price'] = number_format((float)$cart_item->cost * $cart_item->quantity, 2, '.', '');
+                $data['items'][$key]['price'] = number_format((float) $cart_item->cost * $cart_item->quantity, 2, '.', '');
                 $data['items'][$key]['currency'] = 'CAD';
                 $data['items'][$key]['qty'] = $cart_item['quantity'];
 
@@ -799,12 +757,12 @@ class IndexController extends Controller
 
                 if ($cart_items->count() - 1 == $key) {
                     $data['items'][$key + 1]['name'] = 'Delivery';
-                    $data['items'][$key + 1]['price'] = number_format((float)$settings->delivery_fee, 2, '.', '');
+                    $data['items'][$key + 1]['price'] = number_format((float) $settings->delivery_fee, 2, '.', '');
                     $data['items'][$key + 1]['currency'] = 'CAD';
                     $data['items'][$key + 1]['qty'] = 1;
 
                     $data['items'][$key + 2]['name'] = 'Tax(13%)';
-                    $data['items'][$key + 2]['price'] = number_format((float)($subtotal + $settings->delivery_fee) * 13 / 100, 2, '.', '');
+                    $data['items'][$key + 2]['price'] = number_format((float) ($subtotal + $settings->delivery_fee) * 13 / 100, 2, '.', '');
                     $data['items'][$key + 2]['currency'] = 'CAD';
                     $data['items'][$key + 2]['qty'] = 1;
                 }
@@ -994,21 +952,21 @@ class IndexController extends Controller
 
         $name = $data['first_name'] . " " . $data['last_name'];
         $session_address = Session::all();
-        if (isset($data['latitude'])) {
+        if (isset ($data['latitude'])) {
             $user = Clients::create([
                 'name' => $name,
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'phone' => $data['phone'],
                 'email' => $data['email'],
-                'address' => isset($data['address']) ? $data['address'] : '',
-                'zip' => isset($data['zip']) ? $data['zip'] : '',
-                'city' => isset($data['city']) ? $data['city'] : '',
-                'province' => isset($data['province']) ? $data['province'] : '',
-                'country' => isset($data['country']) ? $data['country'] : '',
-                'latitude' => isset($data['latitude']) ? $data['latitude'] : '',
-                'longitude' => isset($data['lontude']) ? $data['lontude'] : '',
-                'balance' => isset($data['balance']) ? $data['balance'] : 0,
+                'address' => isset ($data['address']) ? $data['address'] : '',
+                'zip' => isset ($data['zip']) ? $data['zip'] : '',
+                'city' => isset ($data['city']) ? $data['city'] : '',
+                'province' => isset ($data['province']) ? $data['province'] : '',
+                'country' => isset ($data['country']) ? $data['country'] : '',
+                'latitude' => isset ($data['latitude']) ? $data['latitude'] : '',
+                'longitude' => isset ($data['lontude']) ? $data['lontude'] : '',
+                'balance' => isset ($data['balance']) ? $data['balance'] : 0,
                 'password' => Hash::make($data['password']),
                 'is_activated' => 1
             ]);
@@ -1017,66 +975,66 @@ class IndexController extends Controller
             AddressMultiple::create([
                 'user_id' => $user->id,
                 'address_alias' => "Default",
-                'address' => isset($data['address']) ? $data['address'] : '',
-                'city' => isset($data['city']) ? $data['city'] : '',
-                'zip' => isset($data['zip']) ? $data['zip'] : '',
-                'country' => isset($data['country']) ? $data['country'] : '',
-                'province' => isset($data['province']) ? $data['province'] : '',
-                'street' => isset($data['street']) ? $data['street'] : '',
-                'longitude' => isset($data['lontude']) ? $data['lontude'] : '',
-                'latitude' => isset($data['latitude']) ? $data['latitude'] : '',
+                'address' => isset ($data['address']) ? $data['address'] : '',
+                'city' => isset ($data['city']) ? $data['city'] : '',
+                'zip' => isset ($data['zip']) ? $data['zip'] : '',
+                'country' => isset ($data['country']) ? $data['country'] : '',
+                'province' => isset ($data['province']) ? $data['province'] : '',
+                'street' => isset ($data['street']) ? $data['street'] : '',
+                'longitude' => isset ($data['lontude']) ? $data['lontude'] : '',
+                'latitude' => isset ($data['latitude']) ? $data['latitude'] : '',
             ]);
 
             VendorCustomers::create([
-                'vendor_id'=>43,
-                'customer_id'=>$user->id,
-                'phone'=>$data['phone'],
-                 'name'=>$data['first_name'] . " " . $data['last_name'],
-                 'business_name'=>'',
-                 'status' => 1,
-             ]);
+                'vendor_id' => 43,
+                'customer_id' => $user->id,
+                'phone' => $data['phone'],
+                'name' => $data['first_name'] . " " . $data['last_name'],
+                'business_name' => '',
+                'status' => 1,
+            ]);
 
 
             //if address set for session
-        } else if (isset($session_address['latitude'])) {
+        } else if (isset ($session_address['latitude'])) {
             $user = Clients::create([
                 'name' => $name,
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'phone' => $data['phone'],
-                'address' => isset($data['address']) ? $data['address'] : '',
-                'zip' => isset($data['zip']) ? $data['zip'] : '',
-                'city' => isset($data['city']) ? $data['city'] : '',
-                'province' => isset($data['province']) ? $data['province'] : '',
-                'country' => isset($data['country']) ? $data['country'] : '',
-                'latitude' => isset($data['latitude']) ? $data['latitude'] : '',
-                'longitude' => isset($data['lontude']) ? $data['lontude'] : '',
-                'balance' => isset($data['balance']) ? $data['balance'] : 0,
+                'address' => isset ($data['address']) ? $data['address'] : '',
+                'zip' => isset ($data['zip']) ? $data['zip'] : '',
+                'city' => isset ($data['city']) ? $data['city'] : '',
+                'province' => isset ($data['province']) ? $data['province'] : '',
+                'country' => isset ($data['country']) ? $data['country'] : '',
+                'latitude' => isset ($data['latitude']) ? $data['latitude'] : '',
+                'longitude' => isset ($data['lontude']) ? $data['lontude'] : '',
+                'balance' => isset ($data['balance']) ? $data['balance'] : 0,
                 'password' => Hash::make($data['password']),
                 'is_activated' => 1
             ]);
 
             VendorCustomers::create([
-                'vendor_id'=>43,
-                'customer_id'=>$user->id,
-                'phone'=>$data['phone'],
-                 'name'=>$data['first_name'] . " " . $data['last_name'],
-                 'business_name'=>'',
-                 'status' => 1,
-             ]);
+                'vendor_id' => 43,
+                'customer_id' => $user->id,
+                'phone' => $data['phone'],
+                'name' => $data['first_name'] . " " . $data['last_name'],
+                'business_name' => '',
+                'status' => 1,
+            ]);
 
 
             AddressMultiple::create([
                 'user_id' => $user->id,
                 'address_alias' => "Default",
-                'address' => isset($data['address']) ? $data['address'] : '',
-                'city' => isset($data['city']) ? $data['city'] : '',
-                'zip' => isset($data['zip']) ? $data['zip'] : '',
-                'country' => isset($data['country']) ? $data['country'] : '',
-                'province' => isset($data['province']) ? $data['province'] : '',
-                'street' => isset($data['street']) ? $data['street'] : '',
-                'longitude' => isset($data['lontude']) ? $data['lontude'] : '',
-                'latitude' => isset($data['latitude']) ? $data['latitude'] : '',
+                'address' => isset ($data['address']) ? $data['address'] : '',
+                'city' => isset ($data['city']) ? $data['city'] : '',
+                'zip' => isset ($data['zip']) ? $data['zip'] : '',
+                'country' => isset ($data['country']) ? $data['country'] : '',
+                'province' => isset ($data['province']) ? $data['province'] : '',
+                'street' => isset ($data['street']) ? $data['street'] : '',
+                'longitude' => isset ($data['lontude']) ? $data['lontude'] : '',
+                'latitude' => isset ($data['latitude']) ? $data['latitude'] : '',
             ]);
         }
 
@@ -1193,8 +1151,7 @@ class IndexController extends Controller
         $user = Auth::guard('profile')->user();
         $user = Clients::find($user->id);
         $multiple_address = AddressMultiple::where('user_id', $user->id)->get();
-	$card_details = ClientCreditCard::where('customerid', $user->id )->first();
-        return view('home.shop.user_account_address', compact('user', 'multiple_address', 'card_details'));
+        return view('home.shop.user_account_address', compact('user', 'multiple_address'));
     }
 
     public function updateDetails(Request $request, $id)
@@ -1204,22 +1161,6 @@ class IndexController extends Controller
         $input = $request->all();
         $user->update($input);
         return redirect()->back()->with('message', 'Account Information Updated Successfully.');
-    }
-
-    public function updateCardDetails(Request $request, $customerid)
-    {
-        Session::put('tab', 'card_info');
-        $card= ClientCreditCard::where('customerid', $customerid)->first();
-	if($card){
-	  $input = $request->all();
-          $card->update($input);
-          return redirect()->back()->with('message', 'Card Information Updated Successfully.');
-	}
-	else{
-	  $request->merge(['customerid' => $customerid]);
-	  ClientCreditCard::create($request->all());
-	  return redirect()->back()->with('message', 'Card Information Inserted Successfully.');
-	}
     }
 
     public function multipleAddressEdit($id)
@@ -1402,7 +1343,7 @@ class IndexController extends Controller
 
             if ($request->isMethod('post')) {
 
-                if (empty(Session::get('uniqueid'))) {
+                if (empty (Session::get('uniqueid'))) {
 
                     $cart = new Cart;
                     $cart->fill($request->all());
@@ -1524,7 +1465,7 @@ class IndexController extends Controller
     public function productDetailsUpdate(Request $request)
     {
 
-        if (empty(Session::get('uniqueid'))) {
+        if (empty (Session::get('uniqueid'))) {
 
             $cart = new Cart();
             $cart->uniqueid = Str::random(4);

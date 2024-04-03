@@ -5,19 +5,24 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
-        "cartalyst/stripe-laravel": "6.0.*",
-        "doctrine/dbal": "^2.10",
-        "laravel/framework": "5.4.*",
-        "laravel/socialite": "^3.2.0",
-        "laravel/tinker": "~1.0",
-        "ramsey/uuid": "^3.8",
-        "srmklive/paypal": "^1.6"
+        "php": "^8.1",
+        "barryvdh/laravel-debugbar": "*",
+        "barryvdh/laravel-dompdf": "*",
+        "cartalyst/stripe-laravel": "*",
+        "laravel/framework": "^8.0",
+        "laravel/helpers": "^1.7",
+        "laravel/socialite": "^5.0",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "*",
+        "ramsey/uuid": "*",
+        "srmklive/paypal": "*",
+        "yajra/laravel-datatables-oracle": "*",
+        "yozaz/laravel-swiftmailer": "*"
     },
     "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7"
+        "fzaninotto/faker": "^1.4",
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "classmap": [
@@ -50,6 +55,9 @@
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
     }
 }

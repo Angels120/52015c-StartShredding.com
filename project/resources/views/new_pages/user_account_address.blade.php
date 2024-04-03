@@ -61,18 +61,6 @@ div.cs-skin-slide.cs-active .cs-backdrop{
                         </li>
                         @endif
 
-                        @if(Session::get('tab')=="account_billing")
-                        <li class="nav-item">
-                            <a href="#" class="active show" data-toggle="tab" role="tab" data-target="#tab2BillingSettings"
-                               class="" aria-selected="false">BILLING SETTINGS</a>
-                        </li>
-                        @else
-                        <li class="nav-item">
-                            <a href="#" data-toggle="tab" role="tab" data-target="#tab2BillingSettings" class=""
-                               aria-selected="false">BILLING SETTINGS</a>
-                        </li>
-                        @endif
-
 
                         {{-- <li class="nav-item">
                                 <a href="#" data-toggle="tab" role="tab" data-target="#tab2Inspire" class=""
@@ -363,6 +351,8 @@ div.cs-skin-slide.cs-active .cs-backdrop{
                                             </form>
                                         </div>
                                     </div>
+
+
                                 </div>
                                 @if(Session::get('tab')=="change_pass")
                                 <div class="tab-pane active show" id="tab2Inspire">
@@ -411,109 +401,9 @@ div.cs-skin-slide.cs-active .cs-backdrop{
                                             </div>
                                         </div>
                                     </div>
-									@if(Session::get('tab')=="account_billing")
-                                <div class="tab-pane active show" id="tab2BillingSettings">
-                                    @else
-                                    <div class="tab-pane" id="tab2BillingSettings">
-                                        @endif
-
-                                        <div class="row column-seperation">
-                                            <div class="col-lg-12">
-                                                @if(Session::has('error'))
-                                                <div class="alert alert-danger alert-dismissable">
-                                                    <a href="#" class="close" data-dismiss="alert"
-                                                       aria-label="close">&times;</a>
-                                                    {{ Session::get('error') }}
-                                                </div>
-                                                @endif
-                                                @if(Session::has('message'))
-                                                <div class="alert alert-success alert-dismissable">
-                                                    <a href="#" class="close" data-dismiss="alert"
-                                                       aria-label="close">&times;</a>
-                                                    {{ Session::get('message') }}
-                                                </div>
-                                                @endif
-                                                <form
-                                                        action="{{ action('UserDetailController@updateBilling',['id' => $user->id]) }}"
-                                                        method="POST" class="" id="form-billing" role="form">
-                                                    {{ csrf_field() }}
-                                                    <div class="clearfix"></div>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="form-group form-group-default required">
-                                                                <label>Card holder's Name</label>
-                                                                <input class="form-control" type="text"
-                                                                       name="cardholder_name"
-                                                                       id="cardholder_name" value="{{ $user->cardholder_name }}"
-                                                                       placeholder="Name on card"
-                                                                       required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group form-group-default required">
-                                                                <label>Card Number</label>
-                                                                <input class="form-control card-no" type="text" name="cardnumber"
-                                                                       id="cr-no" value="{{ $user->cardnumber }}"
-                                                                       placeholder="Card Number" minlength="16" maxlength="19" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group form-group-default required">
-                                                                <label>Expiry Date</label>
-                                                                <input class="form-control" type="text"
-                                                                       name="expirydate" value="{{ $user->expirydate }}"
-                                                                       id="expiry_date" placeholder="01/12" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group form-group-default required">
-                                                                <label>CVV</label>
-                                                                <input class="form-control" type="number"
-                                                                       name="cvv" value="{{ $user->cvv }}"
-                                                                       id="cvv" maxlength="3" minlength="3" placeholder="000" required>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <button class="btn btn-primary btn-cons m-t-10" type="submit">Save Changes</button>
-                                                </form>
-                                            </div>
-                                        </div>
-										{{-- Card List Table --}}
-										<div class="row column-separation">
-                                                                                    <div class="col-lg-12">
-                                                                                        <table class="table table-bordered">
-                                                                                            <tbody>
-                                                                                            @forelse($user->credit_cards as
-                                                                                             $card)
-                                                                                                <tr>
-                                                                                                    <td>{{
-                                                                                                    $card->maskNum
-                                                                                                    ()
-                                                                                                    }}</td>
-                                                                                                    <td>
-                                                                                                        {{
-                                                                                                    $card->exp_month
-                                                                                                    }}/{{
-                                                                                                    $card->exp_year
-                                                                                                    }}</td>
-                                                                                                    <td>
-                                                                                                        <a href="#"
-                                                                                                           class="">Edit</a> | <a href="#" class="">Delete</a>
-                                                                                                    </td>
-                                                                                                </tr>
-																							@empty
-																								<p> No Associated Credit Card(s)</p>
-                                                                                             @endforelse
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </div>
-                                                                                </div>
-                                    </div>
-                                </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

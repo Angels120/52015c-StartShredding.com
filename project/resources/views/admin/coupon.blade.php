@@ -35,7 +35,7 @@
                         @if($id === 'new')
                         <form method="POST" action="{!! action('CouponController@store') !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
                         @else
-                        <form method="POST" action="{!! action('CouponController@update',['id' => $id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                        <form method="POST" action="{!! action('CouponController@update',['coupon' => $id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
                         @endif
 
                             {{csrf_field()}}

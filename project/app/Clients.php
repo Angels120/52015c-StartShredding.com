@@ -2,6 +2,7 @@
 
 namespace App;
 
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -10,7 +11,8 @@ class Clients extends Authenticatable
     use Notifiable;
     public $table = "clients";
     protected $fillable = [
-        'name', 'gender', 'balance', 'email', 'latitude', 'longitude', 'phone', 'password', 'fax','unit_no','buzz_code', 'address', 'instagram', 'facebook', 'city', 'zip', 'status','is_activated', 'created_at', 'updated_at', 'first_name', 'last_name', 'Province_State', 'business_name', 'Country', 'client_type', 'zone_id', 'special_notes', 'cardholder_name', 'cardnumber', 'expirydate', 'cvv'
+        'name', 'gender', 'balance', 'email', 'latitude', 'longitude', 'phone', 'password', 'fax','unit_no','buzz_code', 'address', 'instagram', 'facebook', 'city', 'zip', 'status','is_activated', 'created_at', 'updated_at', 'first_name',
+        'last_name', 'Province_State', 'business_name', 'Country', 'client_type', 'zone_id', 'special_notes'
     ];
 
     /**
@@ -21,21 +23,11 @@ class Clients extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
-    /**
-     * Get referrals through referral models
-     *
-     */
     public function getReferrals()
     {
         return ReferralProgram::all()->map(function ($program) {
             return ReferralLink::getReferral($this, $program);
         });
-    }
-	
-	public function credit_cards()
-    {
-        return $this->hasMany(ClientCreditCard::class, 'customerid');
     }
 
     public function bought_gift_cards()

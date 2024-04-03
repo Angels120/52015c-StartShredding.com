@@ -40,7 +40,7 @@
                                         <td>{{$slider->title}}</td>
                                         <td>{{$slider->text}}</td>
                                         <td>
-                                            <form method="POST" action="{!! action('SliderController@destroy',['id' => $slider->id]) !!}">
+                                            <form method="POST" action="{!! action('SliderController@destroy',['slider' => $slider->id]) !!}">
                                                 {{csrf_field()}}
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <a href="sliders/{{$slider->id}}/edit" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>

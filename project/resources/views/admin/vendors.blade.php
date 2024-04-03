@@ -52,7 +52,7 @@
 
                                     <td>
 
-                                        <form method="POST" action="{!! action('VendorsController@destroy',['id' => $vendor->id]) !!}">
+                                        <form method="POST" action="{!! action('VendorsController@destroy',['vendor' => $vendor->id]) !!}">
                                             {{csrf_field()}}
                                             <input type="hidden" name="_method" value="DELETE">
                                             <a href="vendors/{{$vendor->id}}" class="btn btn-primary btn-xs"><i class="fa fa-check"></i> View Details </a>
