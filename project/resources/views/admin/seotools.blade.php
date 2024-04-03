@@ -37,7 +37,7 @@
                                 <div class="tab-pane active" id="analytics">
                                     <p class="lead">Google Analytics</p>
                                     <div class="ln_solid"></div>
-                                    <form method="POST" action="{!! action('SeoToolsController@update',['id' => $tools->id]) !!}" class="form-horizontal form-label-left" novalidate>
+                                    <form method="POST" action="{!! action('SeoToolsController@update',['tool' => $tools->id]) !!}" class="form-horizontal form-label-left" novalidate>
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="PATCH">
                                         <div class="item form-group">
@@ -59,7 +59,7 @@
                                 <div class="tab-pane" id="metatags">
                                     <p class="lead">Meta Keywords</p>
                                     <div class="ln_solid"></div>
-                                    <form method="POST" action="{!! action('SeoToolsController@update',['id' => $tools->id]) !!}" id="meta_form" class="form-horizontal form-label-left" novalidate>
+                                    <form method="POST" action="{!! action('SeoToolsController@update',['tool' => $tools->id]) !!}" id="meta_form" class="form-horizontal form-label-left" novalidate>
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="PATCH">
                                         <div class="item form-group">

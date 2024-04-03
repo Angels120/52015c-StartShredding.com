@@ -35,7 +35,7 @@
                         @if($id === 'new')
                         <form method="POST" action="{!! action('GiftCardController@store') !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
                         @else
-                        <form method="POST" action="{!! action('GiftCardController@update',['id' => $id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                        <form method="POST" action="{!! action('GiftCardController@update',['gift_card' => $id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
                         @endif
 
                             {{csrf_field()}}

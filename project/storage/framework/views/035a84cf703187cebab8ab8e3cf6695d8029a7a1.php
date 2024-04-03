@@ -42,7 +42,7 @@
                         <div class="order-tracking">
                             <span class="title">Order tracking number</span>
                             <div class="trackingnumber">#<?php echo e(session()->get('order1')->order_number); ?></div>
-                            <a href="<?php echo e(url('/home/shop-order-details/')); ?>/<?php echo e(session()->get('order1')->id); ?>">Click to View Order Status</a>
+                            <a href="<?php echo e(url('/shop-order-details/')); ?>/<?php echo e(session()->get('order1')->id); ?>">Click to View Order Status</a>
                         </div>
                          <hr class="oc-hr">
                     </div>

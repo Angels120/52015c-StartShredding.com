@@ -301,37 +301,38 @@
 							<?php
 							if ($orders != null) {
 								foreach ($orders as $order) {
-
 									$getOtherDetails = DB::select('SELECT * FROM `clients` WHERE id = (SELECT `customerid` FROM `orders` WHERE `id` = ?) ', [$order->orderid]);
 									if ($getOtherDetails != null) {
 										$getOtherDetails = $getOtherDetails[0];
 										$statusKey = "constants.status_" . $order->status;
 									}
-
-									$orderdet = App\Order::where('id', $order->id)->first();
+									$orderdet = App\Order::where('id', $order->orderid)->first();
+									// $order = $orderdet;
+									if($getOtherDetails!=null){
 							?>
 									<tr>
-										<!-- <td align="center">
-											<div class="checkbox-new">
-												<input value="<?= $order->id ?>" class="float-left" id="order_pro_<?= $order->id ?>" name="order.product[]" type="checkbox">
-												<label for="order_pro_<?= $order->id ?>" class="float-left font_size_14"></label>
-											</div>
-										</td> -->
-										<td><?= date('M d, Y', strtotime($order->created_at)) ?></td>
+										<td><?= date('M d, Y', strtotime($getOtherDetails->created_at)) ?></td>
 										<td><a href="{!! url('vendor/details/'.$order->orderid) !!}"><?= $order->orderid ?></a></td>
 										<td><a href="{!! url('vendor/profile/'.$getOtherDetails->id) !!}"><?= $getOtherDetails->name ?></a></td>
-
-										<td class="hidden-xs hidden-sm"><?= $orderdet->status ?></td>
-										<td class="hidden-xs hidden-sm">$ <?= number_format((float) $order->cost, 2, '.', '') ?></td>
-										@if($order->payment == "completed")
+                                         @if($orderdet->order_type !=3)
+										 <td class="hidden-xs hidden-sm"><?= $order->status ?></td>
+										 <td class="hidden-xs hidden-sm">$ <?= number_format((float) $orderdet->pay_amount, 2, '.', '') ?></td>
+										 @if($orderdet->payment == "completed")
 											<td class="hidden-xs hidden-sm">Paid</td>
-										@elseif($order->payment == "pending")
+										@elseif($orderdet->payment == "pending")
 											<td class="hidden-xs hidden-sm">Not Paid</td>
 										@else
 											<td class="hidden-xs hidden-sm">Partial Paid</td>
 										@endif
+										 @else
+                                         <td class="hidden-xs hidden-sm"> Inquiry </td>
+                                         <td class="hidden-xs hidden-sm"> - </td>
+                                         <td class="hidden-xs hidden-sm"> - </td>
+										 @endif
+										
 									</tr>
 							<?php
+									}
 								}
 							} else {
 								echo '<tr><td colspan="8" class="text-center">No Data Found</td></tr>';

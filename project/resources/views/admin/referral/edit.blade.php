@@ -24,7 +24,7 @@
                     </div>
                     @endif
                     <div id="response"></div>
-                    <form method="POST" action="{!! action('ReferralProgramController@update',['id' => $ReferralProgram->id]) !!}"
+                    <form method="POST" action="{!! action('ReferralProgramController@update',['referral' => $ReferralProgram->id]) !!}"
                         class="form-horizontal form-label-left">
                     {{csrf_field()}}
                     <input type="hidden" name="_method" value="PATCH">

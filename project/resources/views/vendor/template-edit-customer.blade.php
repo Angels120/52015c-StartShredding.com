@@ -195,16 +195,15 @@
                                             $days_allowed[$allowed]=$allowed;
                                         }
 
-
                                     ?>
                                     <select name="days_allowed[]" placeholder="Please Select" class="form-control custom-select" multiple id="days_allowed">
-                                        <option value="1" <?php if($days_allowed[1]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(1,old('days_allowed'))) selected @endif>Monday</option>
-                                        <option value="2" <?php if($days_allowed[2]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(2,old('days_allowed'))) selected @endif>Tuesday</option>
-                                        <option value="3" <?php if($days_allowed[3]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(3,old('days_allowed'))) selected @endif>Wednesday</option>
-                                        <option value="4" <?php if($days_allowed[4]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(4,old('days_allowed'))) selected @endif>Thursday</option>
-                                        <option value="5" <?php if($days_allowed[5]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(5,old('days_allowed'))) selected @endif>Friday</option>
-                                        <option value="6" <?php if($days_allowed[6]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(6,old('days_allowed'))) selected @endif>Saturday</option>
-                                        <option value="7" <?php if($days_allowed[7]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(7,old('days_allowed'))) selected @endif>Sunday</option>
+                                        <option value="1" <?php if(array_key_exists(1, $days_allowed) && $days_allowed[1]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(1,old('days_allowed'))) selected @endif>Monday</option>
+                                        <option value="2" <?php if(array_key_exists(2, $days_allowed) && $days_allowed[2]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(2,old('days_allowed'))) selected @endif>Tuesday</option>
+                                        <option value="3" <?php if(array_key_exists(3, $days_allowed) && $days_allowed[3]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(3,old('days_allowed'))) selected @endif>Wednesday</option>
+                                        <option value="4" <?php if(array_key_exists(4, $days_allowed) && $days_allowed[4]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(4,old('days_allowed'))) selected @endif>Thursday</option>
+                                        <option value="5" <?php if(array_key_exists(5, $days_allowed) && $days_allowed[5]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(5,old('days_allowed'))) selected @endif>Friday</option>
+                                        <option value="6" <?php if(array_key_exists(6, $days_allowed) && $days_allowed[6]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(6,old('days_allowed'))) selected @endif>Saturday</option>
+                                        <option value="7" <?php if(array_key_exists(7, $days_allowed) && $days_allowed[7]) {?>selected<?php }?> @if(is_array(old('days_allowed')) && in_array(7,old('days_allowed'))) selected @endif>Sunday</option>
                                     </select>
                                     @if($errors->has('days_allowed'))
                                         <div class="error text-danger">{{ $errors->first('days_allowed') }}</div>

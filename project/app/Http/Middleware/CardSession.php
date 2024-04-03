@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class CardSession
 {
@@ -17,7 +18,7 @@ class CardSession
     public function handle($request, Closure $next)
     {
         if (empty(Session::get('uniqueid'))) {
-            Session::put('uniqueid', str_random(7));
+            Session::put('uniqueid', Str::random(7));
         }
         return $next($request);
     }

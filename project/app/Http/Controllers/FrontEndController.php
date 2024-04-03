@@ -318,24 +318,24 @@ class FrontEndController extends Controller
     }
 
     //Category Products
-    public function catproduct($slug)
+    public function catproduct(Request $request, $slug)
     {
         $sort = "";
         $min = "0";
         $max = "500";
         $mins = "0";
         $maxs = "500";
-        if (Input::get('sort') != "") {
-            $sort = Input::get('sort');
+        if ($request->get('sort') != "") {
+            $sort = $request->get('sort');
         }
-        if (Input::get('min') != "") {
-            $min = Product::Filter(Input::get('min'));
-            $mins = Input::get('min');
+        if ($request->get('min') != "") {
+            $min = Product::Filter($request->get('min'));
+            $mins = $request::get('min');
             $sort = "price";
         }
-        if (Input::get('max') != "") {
-            $max = Product::Filter(Input::get('max'));
-            $maxs = Input::get('max');
+        if ($request->get('max') != "") {
+            $max = Product::Filter($request->get('max'));
+            $maxs = $request::get('max');
             $sort = "price";
         }
         $maxvalue = $products = Product::where('status', '1')->max('price');

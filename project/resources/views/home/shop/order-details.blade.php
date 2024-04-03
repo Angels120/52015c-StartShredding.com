@@ -245,9 +245,9 @@
                                             </button>
                                         </div>
                                         <div class="col-md-4">
-                                            <button class="btn btn-warning btn-cons m-b-10 btn-block" type="button" title="SERVICE AGREEMENT">
-                                                <i class="fa fa-file"></i> 
-                                                <span class="bold">S.A</span>
+                                            <button class="btn btn-success btn-cons m-b-10 btn-block" type="button"
+                                                    hidden><i class="fa fa-envelope"></i> <span
+                                                        class="bold">EMAIL</span>
                                             </button>
                                         </div>
 

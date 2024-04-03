@@ -166,7 +166,7 @@ $( window ).resize(function() {
                                        style="width: 100%;">CHECK OUT</a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a class="btn btn-primary" href="<?php echo e(url('/shop-cart')); ?>"
+                                    <a class="btn btn-primary" href="<?php echo e(url('/shop-order-summary')); ?>"
                                        style="width: 100%;">GO TO CART</a>
                                 </div>
                             </div>

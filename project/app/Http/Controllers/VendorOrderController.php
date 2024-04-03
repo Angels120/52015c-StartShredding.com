@@ -240,40 +240,4 @@ class VendorOrderController extends Controller
         return view('confirm_order', array('client' => $client, 'job' => $job, 'invoice' => $invoice, 'tax' => $job_tax, 'view' => $view));
     }
 
-    public function documentUpload(Request $request)
-   {
-        //dd($request->all());
-
-        // $request->validate(
-        //     [
-        //     'sa_document' => 'required|mimes:pdf,jpg,png,jpeg|max:1999'
-        //     ]
-        // );
-
-        //dd($request->sa_document);
-        //dd($request->hasFile('sa_document'));
-
-        if ($request->hasFile('sa_document')) {
-            // saving the document
-            $newFileName = time() .'-'. $request->doc_id. '-'. 'SA_Agreement' . '.' . $request->sa_document->extension();
-
-            //dd($newFileName);
-
-            $request->sa_document->move(public_path('document_uploads'), $newFileName);
-        }
-
-        $order = Order::findOrFail($request->id);
-        //dd($order);
-        $order->doc_id = $request->doc_id;
-        $order->complete_date = $request->complete_date;
-        $order->sa_document = $newFileName;
-        //dd($order->sa_document);
-        $order->update();
-
-        return redirect()->back()
-            ->with('message', 'Document successfully uploaded!');
-
-
-   }
-
 }

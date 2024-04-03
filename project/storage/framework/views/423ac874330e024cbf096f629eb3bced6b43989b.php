@@ -307,7 +307,7 @@
 										$statusKey = "constants.status_" . $order->status;
 									}
 
-									$orderdet = App\Order::where('id', $order->id)->first();
+									$orderdet = App\Order::where('id', $order->orderid)->first();
 							?>
 									<tr>
 										<!-- <td align="center">
@@ -319,16 +319,22 @@
 										<td><?= date('M d, Y', strtotime($order->created_at)) ?></td>
 										<td><a href="<?php echo url('vendor/details/'.$order->orderid); ?>"><?= $order->orderid ?></a></td>
 										<td><a href="<?php echo url('vendor/profile/'.$getOtherDetails->id); ?>"><?= $getOtherDetails->name ?></a></td>
-
-										<td class="hidden-xs hidden-sm"><?= $orderdet->status ?></td>
-										<td class="hidden-xs hidden-sm">$ <?= number_format((float) $order->cost, 2, '.', '') ?></td>
-										<?php if($order->payment == "completed"): ?>
+                                         <?php if($orderdet->order_type !=3): ?>
+										 <td class="hidden-xs hidden-sm"><?= $order->status ?></td>
+										 <td class="hidden-xs hidden-sm">$ <?= number_format((float) $orderdet->pay_amount, 2, '.', '') ?></td>
+										 <?php if($order->payment == "completed"): ?>
 											<td class="hidden-xs hidden-sm">Paid</td>
 										<?php elseif($order->payment == "pending"): ?>
 											<td class="hidden-xs hidden-sm">Not Paid</td>
 										<?php else: ?>
 											<td class="hidden-xs hidden-sm">Partial Paid</td>
 										<?php endif; ?>
+										 <?php else: ?>
+                                         <td class="hidden-xs hidden-sm"> Inquiry </td>
+                                         <td class="hidden-xs hidden-sm"> - </td>
+                                         <td class="hidden-xs hidden-sm"> - </td>
+										 <?php endif; ?>
+										
 									</tr>
 							<?php
 								}

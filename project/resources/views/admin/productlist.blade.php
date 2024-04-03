@@ -60,7 +60,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form method="POST" action="{!! action('ProductController@destroy',['id' => $product->id]) !!}">
+                                    <form method="POST" action="{!! action('ProductController@destroy',['product' => $product->id]) !!}">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE">
                                         <a href="{!! url('admin/products') !!}/{{$product->id}}/edit" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Edit </a>

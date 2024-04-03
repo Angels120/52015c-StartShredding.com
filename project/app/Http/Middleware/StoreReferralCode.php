@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\ReferralLink;
 use Closure;
-use Illuminate\Support\Facades\Cookie;
 
 class StoreReferralCode
 {

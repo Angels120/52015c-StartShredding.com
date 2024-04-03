@@ -45,7 +45,7 @@ class UserDetailController extends Controller
     //get user details
     public function accinfo()
     {
-        $user = Clients::with('credit_cards')->find(Auth::user()->id);
+        $user = Clients::find(Auth::user()->id);
         $multiple_address = AddressMultiple::where('user_id', Auth::user()->id)->get();
         return view('new_pages.user_account_address', compact('user', 'multiple_address'));
     }
@@ -59,17 +59,6 @@ class UserDetailController extends Controller
         $user->update($input);
         return redirect()->back()->with('message', 'Account Information Updated Successfully.');
     }
-
-    public function updateBilling(Request $request, $id)
-    {
-        Session::put('tab', 'account_billing');
-        $user = Clients::findOrFail($id);
-        $input = $request->all();
-        $user->update($input);
-
-        return redirect()->back()->with('message', 'Account Billing Information Was Updated Successfully.');
-    }
-
     //user password change
     public function passChange(Request $request, $id)
     {

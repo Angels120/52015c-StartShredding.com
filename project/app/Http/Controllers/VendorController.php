@@ -12,6 +12,7 @@ use App\Product;
 use App\OrderTemplate;
 use App\Clients;
 use App\VendorCustomers;
+use App\OrderInquiry;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,7 +139,15 @@ class VendorController extends Controller
 
         }
         $model = DB::select("select * from ordered_products where orderid='$id'");
-        return view('vendor.details', compact('model', 'order'));
+        $orderCheck=Order::where("id",$id)->where("order_type",3)->first();
+        if($orderCheck){
+            $orderinquiry=OrderInquiry::where("order_id",$id)->first();
+             return view('vendor.details', compact('model', 'order','orderinquiry'));
+        }
+        else {
+             return view('vendor.details', compact('model', 'order'));
+        }
+           
     }
 
 
@@ -351,7 +360,7 @@ class VendorController extends Controller
     {
         $query = "SELECT * FROM `orders`";
 
-        $customer = DB::select(DB::raw($query));
+        $customers = DB::select(DB::raw($query));
 
 
         return view('vendor.customer', compact('customers'));
@@ -691,36 +700,6 @@ class VendorController extends Controller
             return NULL;
         }
 
-    }
-
-    public function billing(Request $request, $id)
-    {
-        $client = Clients::whereId($id)->first();
-
-        return view('vendor.customer-billing', compact('client'));
-    }
-    public function addBilling(Request $request, $id)
-    {
-        //dd($request->all());
-
-        $user = Clients::findOrFail($id);
-        $input = $request->all();
-        $user->update($input);
-
-        return redirect()->back()
-            ->with('message', 'Customer billing info successfully updated!');
-    }
-
-    public function documents($id)
-    {
-        $client = Clients::whereId($id)->first();
-        $order = Order::whereId($id)->select('doc_id', 'order_number', 'booking_date', 'sa_document')->first();
-
-        if (!empty($client)) {
-            return view('vendor.customer-documents', compact('client', 'order'));
-        } else {
-            return NULL;
-        }
     }
 
 

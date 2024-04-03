@@ -20,8 +20,8 @@ class RedirectIfAuthenticated
         switch ($guard){
             case 'profile':
                 if (Auth::guard($guard)->check()){
-                    //return redirect(route('user.account'));
-                    return redirect(route('categories.product', 'dry-clean-laundry'));
+                    return redirect('/');
+                    // return redirect(route('categories.product', 'dry-clean-laundry'));
                 }
                 break;
 

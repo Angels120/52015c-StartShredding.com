@@ -209,17 +209,40 @@
                                 <hr>
                                 <thead>
                                 <tr>
-                                    <th width="10%">Product ID#</th>
-                                    <th>Product Title</th>
-                                    <th width="5%">Quantity</th>
-                                    <th width="10%">Size</th>
-                                    <th width="20%">Owner</th>
-                                    <th width="10%">Status</th>
-                                </tr>
+                                    <th class="text-left">ITEM</th>
+                                    <th class="text-left">DATE</th>
+                                    <th class="text-center">QTY</th>
+                                    <th class="text-right">AMOUNT</th>
+                                 </tr>
                                 </thead>
                                 <tbody>
+                                 <?php
+                                            $getOrderProducts = DB::select("select * from ordered_products where orderid='$order->id'");
 
-                                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            if(is_array($getOrderProducts) && count($getOrderProducts) > 0){
+                                            foreach ($getOrderProducts as $orderDetails) {
+                                            if($orderDetails != null){
+                                            $productDetail = DB::select("select * from products where id='$orderDetails->productid'");
+                                            ?>
+                                            <?php 
+                                                $date=date_create($orderDetails->created_at);
+                                                $new_date= date_format($date,"m/d/Y");
+                                             ?>
+                                            <tr>
+                                                <td class="v-align-middle text-left"><?php echo e($productDetail[0]->title); ?> : <?php echo e($order->service); ?> Service</td>
+                                                <td class="v-align-middle text-left"><?php echo e($new_date); ?></td>
+                                                <td class="v-align-middle text-center"><?php echo e($orderDetails->quantity); ?></td>
+                                                <td class="v-align-middle text-right">
+                                                    <?php echo e($settings[0]->currency_sign); ?><?php echo e(number_format((float)$order->subtotal, 2, '.', '')); ?>
+
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            }
+                                            }
+                                            }
+                                   ?>
+                        <!--         <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <?php if(\App\Product::where('id',$product->productid)->count() > 0): ?>
                                             <td><?php echo e($product->productid); ?></td>
@@ -238,14 +261,26 @@
                                             </td>
                                             <td class="o-<?php echo e($product->status); ?>"><?php echo e(ucfirst($product->status)); ?></td>
                                         <?php else: ?>
-                                            <td><?php echo e($product->productid); ?></td>
-                                            <td style="color:red;">Product Deleted</td>
-                                            <td><?php echo e($product->quantity); ?></td>
-                                            <td><?php echo e($product->size); ?></td>
+                                            <?php 
+                                               $product_list=$product->productid;
+                                             ?>
+                                            <td><?php echo e($product_list->id); ?></td>
+                                            <td><?php echo e($product_list->title); ?></td>
                                             <td>
-                                                <?php if($product->owner == "vendor"): ?>
-                                                    <?php if(\App\Vendors::where('id',$product->vendorid)->count() > 0): ?>
-                                                        <?php echo e(\App\Vendors::findOrFail($product->vendorid)->shop_name); ?>
+                                            <?php 
+                                               $product_list=$product->productid;
+                                               $tiers= $product_list->tiers;
+                                               $tiers=unserialize($tiers);
+                                               foreach ($tiers as $key => $value) {
+                                                  echo ucfirst($key)." : ".$value.", ";
+                                               }
+                                              ?>
+                                            </td>
+                                            <td>$<?php echo e($product_list->price); ?></td>
+                                            <td>
+                                                <?php if($product_list->owner == "vendor"): ?>
+                                                    <?php if(\App\Vendors::where('id',$product_list->vendorid)->count() > 0): ?>
+                                                        <?php echo e(\App\Vendors::findOrFail($product_list->vendorid)->shop_name); ?>
 
                                                     <?php else: ?>
                                                         <span style="color:red;">Vendor Account Deleted</span>
@@ -257,22 +292,7 @@
                                             <td class="o-<?php echo e($product->status); ?>"><?php echo e(ucfirst($product->status)); ?></td>
                                         <?php endif; ?>
                                     </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> -->
 
                                 </tbody>
                             </table>

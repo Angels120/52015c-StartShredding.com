@@ -19,12 +19,12 @@
         <hr>
         
         <p class="lead">
-          <a class="btn btn-primary btn-sm" href="<?php echo e(url('/home')); ?>" role="button">Continue to homepage</a>
+          <a class="btn btn-primary btn-sm" href="<?php echo e(url('/')); ?>" role="button">Continue to homepage</a>
         </p>
         <br>
         <div>
         <p class="lead">
-        <a class="btn btn-primary btn-sm" href="<?php echo e(url('/home/shop-signin')); ?>" role="button">Login</a>
+        <a class="btn btn-primary btn-sm" href="<?php echo e(url('/shop-signin')); ?>" role="button">Login</a>
         </p>
        </div>
       </div>

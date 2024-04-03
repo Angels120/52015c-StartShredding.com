@@ -5,6 +5,11 @@
 @stop
 
 @section('content')
+<?php
+if(!isset($_GET['tab_step'])){
+    $_GET['tab_step'] = 1;
+}
+?>
 <style>
     .basic-form .col-xs-12 {
         margin-bottom: 6px;

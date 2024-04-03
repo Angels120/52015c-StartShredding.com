@@ -50,8 +50,6 @@
                                 <li class="active"><a href="{{url('/vendor/customer/'.$client->id)}}" data-toggle="tab">Overview</a></li>
                                 <li><a href="{{url('/vendor/customer/'.$client->id.'/templates')}}">Templates</a></li>
                                 <li><a href="{{url('/vendor/customer/'.$client->id.'/orders')}}" >Orders</a></li>
-                                <li><a href="{{url('/vendor/customer/'.$client->id.'/billing')}}" >Billing</a></li>
-                                <li><a href="{{url('/vendor/customer/'.$client->id.'/documents')}}" >Documents</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active mt-3" id="1">
@@ -103,10 +101,6 @@
                                 <div class="tab-pane mt-3" id="2">
                                 </div>
                                 <div class="tab-pane mt-3" id="3">
-                                </div>
-                                <div class="tab-pane mt-3" id="4">
-                                </div>
-                                <div class="tab-pane mt-3" id="5">
                                 </div>
                             </div>
                         </div>

@@ -70,7 +70,7 @@ if(isset($_GET['id'])){
 					    <div id="companySettings" class="tab-pane fade <?php if($activeMenu==1){echo 'in active';} ?>">
 					     	<div class="bg-white">
 								<div class="panel-body-custom tableContainParent">
-									<form method="POST" action="{!! action('VendorProfileController@update',['id' => $vendor->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
+									<form method="POST" action="{!! action('VendorProfileController@update',['setting' => $vendor->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
 			                            {{csrf_field()}}
 			                            <input type="hidden" name="_method" value="PATCH">
 			                            <div class="form-group">
@@ -132,7 +132,7 @@ if(isset($_GET['id'])){
 					    <div id="storeSettings" class="tab-pane fade <?php if($activeMenu==2){echo 'in active';} ?>">
 					     	<div class="bg-white">
 								<div class="panel-body-custom tableContainParent">
-									<form method="POST" action="{!! action('VendorProfileController@update',['id' => $vendor->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
+									<form method="POST" action="{!! action('VendorProfileController@update',['setting' => $vendor->id]) !!}" class="form-horizontal form-label-left" enctype="multipart/form-data">
 			                            {{csrf_field()}}
 			                            <input type="hidden" name="_method" value="PATCH">
 			                            

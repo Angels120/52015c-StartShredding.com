@@ -219,17 +219,39 @@
                                 <hr>
                                 <thead>
                                 <tr>
-                                    <th width="10%">Product ID#</th>
-                                    <th>Product Title</th>
-                                    <th width="5%">Quantity</th>
-                                    <th width="10%">Size</th>
-                                    <th width="20%">Owner</th>
-                                    <th width="10%">Status</th>
-                                </tr>
+                                    <th class="text-left">ITEM</th>
+                                    <th class="text-left">DATE</th>
+                                    <th class="text-center">QTY</th>
+                                    <th class="text-right">AMOUNT</th>
+                                 </tr>
                                 </thead>
                                 <tbody>
+                                 <?php
+                                            $getOrderProducts = DB::select("select * from ordered_products where orderid='$order->id'");
 
-                                @foreach($products as $product)
+                                            if(is_array($getOrderProducts) && count($getOrderProducts) > 0){
+                                            foreach ($getOrderProducts as $orderDetails) {
+                                            if($orderDetails != null){
+                                            $productDetail = DB::select("select * from products where id='$orderDetails->productid'");
+                                            ?>
+                                            @php
+                                                $date=date_create($orderDetails->created_at);
+                                                $new_date= date_format($date,"m/d/Y");
+                                            @endphp
+                                            <tr>
+                                                <td class="v-align-middle text-left">{{$productDetail[0]->title}} : {{$order->service}} Service</td>
+                                                <td class="v-align-middle text-left">{{ $new_date}}</td>
+                                                <td class="v-align-middle text-center">{{$orderDetails->quantity}}</td>
+                                                <td class="v-align-middle text-right">
+                                                    {{$settings[0]->currency_sign}}{{ number_format((float)$order->subtotal, 2, '.', '') }}
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            }
+                                            }
+                                            }
+                                   ?>
+                        <!--         @foreach($products as $product)
                                     <tr>
                                         @if(\App\Product::where('id',$product->productid)->count() > 0)
                                             <td>{{$product->productid}}</td>
@@ -248,14 +270,26 @@
                                             </td>
                                             <td class="o-{{$product->status}}">{{ucfirst($product->status)}}</td>
                                         @else
-                                            <td>{{$product->productid}}</td>
-                                            <td style="color:red;">Product Deleted</td>
-                                            <td>{{$product->quantity}}</td>
-                                            <td>{{$product->size}}</td>
+                                            <?php 
+                                               $product_list=$product->productid;
+                                             ?>
+                                            <td>{{$product_list->id}}</td>
+                                            <td>{{$product_list->title}}</td>
                                             <td>
-                                                @if($product->owner == "vendor")
-                                                    @if(\App\Vendors::where('id',$product->vendorid)->count() > 0)
-                                                        {{\App\Vendors::findOrFail($product->vendorid)->shop_name}}
+                                            <?php 
+                                               $product_list=$product->productid;
+                                               $tiers= $product_list->tiers;
+                                               $tiers=unserialize($tiers);
+                                               foreach ($tiers as $key => $value) {
+                                                  echo ucfirst($key)." : ".$value.", ";
+                                               }
+                                              ?>
+                                            </td>
+                                            <td>${{$product_list->price}}</td>
+                                            <td>
+                                                @if($product_list->owner == "vendor")
+                                                    @if(\App\Vendors::where('id',$product_list->vendorid)->count() > 0)
+                                                        {{\App\Vendors::findOrFail($product_list->vendorid)->shop_name}}
                                                     @else
                                                         <span style="color:red;">Vendor Account Deleted</span>
                                                     @endif
@@ -266,22 +300,7 @@
                                             <td class="o-{{$product->status}}">{{ucfirst($product->status)}}</td>
                                         @endif
                                     </tr>
-                                @endforeach
-                                {{--@for($i=0;$i<=count($order->products)-1;$i++)--}}
-                                {{--<tr>--}}
-                                {{--@if(\App\Product::where('id',$order->products[$i])->count() > 0)--}}
-                                {{--<td>{{$order->products[$i]}}</td>--}}
-                                {{--<td><a target="_blank" href="{{url('/product')}}/{{$order->products[$i]}}/{{str_replace(' ','-',strtolower(\App\Product::findOrFail($order->products[$i])->title))}}">{{\App\Product::findOrFail($order->products[$i])->title}}</a></td>--}}
-                                {{--<td>{{$order->quantities[$i]}}</td>--}}
-                                {{--<td>{{explode(',',$order->sizes)[$i]}}</td>--}}
-                                {{--@else--}}
-                                {{--<td>{{$order->products[$i]}}</td>--}}
-                                {{--<td style="color:red;">Product Deleted</td>--}}
-                                {{--<td>{{$order->quantities[$i]}}</td>--}}
-                                {{--<td>{{explode(',',$order->sizes)[$i]}}</td>--}}
-                                {{--@endif--}}
-                                {{--</tr>--}}
-                                {{--@endfor--}}
+                                @endforeach -->
 
                                 </tbody>
                             </table>

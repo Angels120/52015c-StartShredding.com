@@ -4,7 +4,7 @@
     @include('home.includes.header_new')
 
     <script src="https://code.jquery.com/jquery-1.12.1.min.js" name="jquery"></script>
-    <script src='https://maps.googleapis.com/maps/api/js?key=<?=env('GOOGLE_KEY')?>&libraries=places&callback=initAutocomplete'></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCRu_qlT0HNjPcs45NXXiOSMd3btAUduSc&libraries=places&callback=initAutocomplete'></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

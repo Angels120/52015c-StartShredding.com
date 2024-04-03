@@ -25,8 +25,8 @@ class CouponController extends Controller
     public function index()
     {
         $this->middleware('auth');
-        $coupons = Coupon::orderBy('id','desc')->get();
-        return view('admin.coupons',compact('coupons', $coupons));
+        $coupons = Coupon::orderBy('id', 'desc')->get();
+        return view('admin.coupons', compact('coupons'));
     }
 
     /**
@@ -39,7 +39,7 @@ class CouponController extends Controller
         $this->middleware('auth');
         $id = 'new';
         $types = explode(',', str_replace('in:', '', explode('|', Coupon::$rules['type'])[1]));
-        return view('admin.coupon',compact('id', 'types'));
+        return view('admin.coupon', compact('id', 'types'));
     }
 
     /**
@@ -86,7 +86,7 @@ class CouponController extends Controller
         $this->middleware('auth');
         $coupon = Coupon::findOrFail($id);
         $types = explode(',', str_replace('in:', '', explode('|', Coupon::$rules['type'])[1]));
-        return view('admin.coupon',compact('id', 'coupon', 'types'));
+        return view('admin.coupon', compact('id', 'coupon', 'types'));
     }
 
     /**
@@ -125,10 +125,10 @@ class CouponController extends Controller
         $this->middleware('auth');
         $coupon = Coupon::findOrFail($id);
         $coupon->delete();
-        return redirect('admin/coupons')->with('message','Coupon Delete Successfully.');
+        return redirect('admin/coupons')->with('message', 'Coupon Delete Successfully.');
     }
 
-    public function status($id , $status)
+    public function status($id, $status)
     {
         $this->middleware('auth');
         $coupon = Coupon::findOrFail($id);

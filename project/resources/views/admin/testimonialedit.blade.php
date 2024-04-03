@@ -18,7 +18,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div id="response"></div>
-                        <form method="POST" action="{!! action('TestimonialController@update',['id'=>$testimonial->id]) !!}" class="form-horizontal form-label-left">
+                        <form method="POST" action="{!! action('TestimonialController@update',['testimonial'=>$testimonial->id]) !!}" class="form-horizontal form-label-left">
                             {{csrf_field()}}
                             <input name="_method" type="hidden" value="PATCH">
                             <div class="item form-group">
